@@ -1,12 +1,10 @@
 <?php
-// Test database connection
 echo "=== Database Connection Test ===\n";
 
 try {
     require_once 'config/database.php';
     echo "✓ Database connection successful!\n";
     
-    // Test a simple query
     $stmt = $pdo->query("SELECT COUNT(*) as count FROM users");
     $result = $stmt->fetch();
     echo "✓ Database query successful! Users count: " . $result['count'] . "\n";

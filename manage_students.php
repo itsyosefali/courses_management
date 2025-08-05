@@ -1,19 +1,16 @@
 <?php
 require_once 'includes/functions.php';
 
-// Set error reporting for debugging
 error_reporting(E_ALL);
 ini_set('display_errors', 0);
 ini_set('log_errors', 1);
 
-// Check if user is logged in and is a teacher
 if (!is_logged_in() || !is_teacher()) {
     redirect_with_message('login.html', 'يجب تسجيل الدخول كمعلم للوصول لهذه الصفحة', 'error');
 }
 
 $user = get_current_user_data();
 
-// Get all students enrolled in teacher's courses
 try {
     $stmt = $pdo->prepare("
         SELECT DISTINCT 
@@ -37,7 +34,6 @@ try {
     $students = [];
 }
 
-// Get teacher's courses for filtering
 try {
     $stmt = $pdo->prepare("SELECT id, title FROM courses WHERE teacher_id = ? ORDER BY title");
     $stmt->execute([$_SESSION['user_id']]);
@@ -97,7 +93,6 @@ try {
 
             <?php echo display_message(); ?>
 
-            <!-- Statistics -->
             <div class="stats-container" style="margin-bottom: 1.5rem;">
                 <div class="stat-item">
                     <div class="stat-icon">👥</div>
@@ -127,7 +122,6 @@ try {
                 </div>
             </div>
 
-            <!-- Students List -->
             <div class="card">
                 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
                     <h3 style="margin: 0; color: #333;">
@@ -198,7 +192,6 @@ try {
 </div>
 
 <script>
-// Search functionality
 document.getElementById('searchInput').addEventListener('input', function() {
     const searchTerm = this.value.toLowerCase();
     const rows = document.querySelectorAll('.student-row');

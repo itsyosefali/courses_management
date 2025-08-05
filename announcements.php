@@ -1,19 +1,16 @@
 <?php
 require_once 'includes/functions.php';
 
-// Set error reporting for debugging
 error_reporting(E_ALL);
 ini_set('display_errors', 0);
 ini_set('log_errors', 1);
 
-// Check if user is logged in and is a teacher
 if (!is_logged_in() || !is_teacher()) {
     redirect_with_message('login.html', 'يجب تسجيل الدخول كمعلم للوصول لهذه الصفحة', 'error');
 }
 
 $user = get_current_user_data();
 
-// Handle announcement creation
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
     if ($_POST['action'] === 'create') {
         $title = trim($_POST['title'] ?? '');
@@ -21,7 +18,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
         $course_id = $_POST['course_id'] ?? null;
         $is_important = isset($_POST['is_important']) ? 1 : 0;
         
-        // Validation
         $errors = [];
         if (empty($title)) {
             $errors[] = 'عنوان الإعلان مطلوب';
@@ -60,7 +56,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
     }
 }
 
-// Get teacher's courses
 try {
     $stmt = $pdo->prepare("SELECT id, title FROM courses WHERE teacher_id = ? ORDER BY title");
     $stmt->execute([$_SESSION['user_id']]);
@@ -70,7 +65,6 @@ try {
     $courses = [];
 }
 
-// Get teacher's announcements
 try {
     $stmt = $pdo->prepare("
         SELECT a.*, c.title as course_title 
@@ -147,7 +141,6 @@ try {
                 </div>
             <?php endif; ?>
 
-            <!-- Create Announcement Form -->
             <div class="card" style="margin-bottom: 1.5rem;">
                 <h3 style="margin: 0 0 1rem 0; color: #333;">
                     <i class="fas fa-plus-circle"></i>
@@ -205,7 +198,6 @@ try {
                 </form>
             </div>
 
-            <!-- Announcements List -->
             <div class="card">
                 <h3 style="margin: 0 0 1rem 0; color: #333;">
                     <i class="fas fa-list"></i>

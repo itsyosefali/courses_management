@@ -1,12 +1,10 @@
 <?php
 require_once 'includes/functions.php';
 
-// Set error reporting for debugging
 error_reporting(E_ALL);
 ini_set('display_errors', 0);
 ini_set('log_errors', 1);
 
-// Check if user is logged in and is a teacher
 if (!is_logged_in() || !is_teacher()) {
     redirect_with_message('login.html', 'يجب تسجيل الدخول كمعلم للوصول لهذه الصفحة', 'error');
 }
@@ -14,14 +12,12 @@ if (!is_logged_in() || !is_teacher()) {
 try {
     $user = get_current_user_data();
     if (!$user) {
-        // User not found in database, clear session and redirect
         session_destroy();
         redirect_with_message('login.html', 'حدث خطأ في الجلسة. يرجى تسجيل الدخول مرة أخرى', 'error');
     }
     
     $teacher_courses = get_teacher_courses($_SESSION['user_id']);
 
-    // Get students enrolled in teacher's courses
     $stmt = $pdo->prepare("
         SELECT DISTINCT u.id, u.full_name, u.email, u.created_at
         FROM users u
@@ -34,7 +30,6 @@ try {
     $stmt->execute([$_SESSION['user_id']]);
     $students = $stmt->fetchAll();
     
-    // Get recent announcements
     $stmt = $pdo->prepare("
         SELECT a.*, c.title as course_title 
         FROM announcements a 
@@ -92,11 +87,9 @@ try {
 
 <div class="section">
     <div class="dashboard-container">
-        <!-- Main Content Area -->
         <div class="main-content">
             <?php echo display_message(); ?>
             
-            <!-- Quick Actions -->
             <div style="display: flex; gap: 1rem; margin-bottom: 1.5rem; flex-wrap: wrap;">
                 <a href="create_course.php" class="btn btn-primary" style="text-decoration: none;">
                     <i class="fas fa-plus"></i>
@@ -120,7 +113,6 @@ try {
                 </a>
             </div>
             
-            <!-- Dashboard Statistics -->
             <div class="stats-container">
                 <div class="stat-item">
                     <div class="stat-icon">📚</div>
@@ -157,7 +149,6 @@ try {
                 </div>
             </div>
 
-            <!-- Courses Section -->
             <div class="courses-section">
                 <h3>دوراتي</h3>
                 <?php if (!empty($teacher_courses)): ?>
@@ -208,9 +199,7 @@ try {
             </div>
         </div>
 
-        <!-- Right Sidebar -->
         <div class="right-sidebar">
-        <!-- Profile Card -->
         <div class="card">
             <div class="id">
                 <img src="image/Teacher.png" alt="Teacher Profile" onerror="this.src='https://via.placeholder.com/80x80/667eea/ffffff?text=👨‍🏫'">
@@ -247,7 +236,6 @@ try {
             </button>
         </div>
 
-        <!-- Recent Announcements Card -->
         <div class="card">
             <h2>
                 <i class="fas fa-bullhorn"></i>
@@ -287,7 +275,6 @@ try {
             <?php endif; ?>
         </div>
 
-        <!-- Students Card -->
         <div class="card">
             <h2>
                 <i class="fas fa-user-graduate"></i>
@@ -316,7 +303,6 @@ try {
 </div>
 
 <script>
-// Add active class to current page
 document.addEventListener('DOMContentLoaded', function() {
     const currentPage = window.location.pathname.split('/').pop();
     const navLinks = document.querySelectorAll('.sideBar-content a');
@@ -329,7 +315,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
     
-    // Add hover effects to stat cards
     const statCards = document.querySelectorAll('.stat-card');
     statCards.forEach(card => {
         card.addEventListener('mouseenter', function() {
@@ -341,7 +326,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    // Add hover effects to course cards
     const courseCards = document.querySelectorAll('.course-card');
     courseCards.forEach(card => {
         card.addEventListener('mouseenter', function() {
@@ -354,7 +338,6 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-// Search functionality
 document.getElementById('input').addEventListener('input', function() {
     const searchTerm = this.value.toLowerCase();
     const courseCards = document.querySelectorAll('.course-card');

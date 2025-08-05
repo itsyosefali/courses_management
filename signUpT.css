@@ -1,10 +1,8 @@
-/* استدعاء الخط المخصص NotoKufiArabic-Light */
 @font-face {
   font-family: NotoKufiArabic-Light; /* تعريف اسم الخط */
   src: url(fonts/NotoKufiArabic-Light.ttf); /* تحديد مسار الخط */
 }
 
-/* إعادة ضبط القيم الافتراضية لجميع العناصر */
 * {
   font-family: NotoKufiArabic-Light; /* استخدام الخط المخصص لجميع العناصر */
   margin: 0;
@@ -12,7 +10,6 @@
   box-sizing: border-box; /* التأكد من أن المسافات الداخلية والحدود تُحسب ضمن أبعاد العناصر */
 }
 
-/* تنسيق الجسم */
 body {
   background-image: linear-gradient(-45deg, #9EBAF3, #EEF3D2, #fc8884c0); /* خلفية بتدرج لوني */
   background-attachment: fixed; /* تثبيت الخلفية أثناء التمرير */
@@ -26,7 +23,6 @@ body {
   backdrop-filter: blur(10px); /* إضافة تأثير التمويه على الخلفية */
 }
 
-/* تنسيق الحاوية */
 .container {
   grid-area: container; /* تخصيص مكان الحاوية في التخطيط */
   background: linear-gradient(0deg, rgb(255, 255, 255, -2) 0%, rgb(244, 247, 251, -2)); /* تأثير التدرج في الخلفية */
@@ -38,7 +34,6 @@ body {
   height: 580px;
 }
 
-/* تنسيق العنوان داخل الحاوية */
 .heading {
   display: flex; /* استخدام Flexbox لتوزيع العناصر داخل العنوان */
   justify-content: space-evenly; /* توزيع النصوص بشكل متساوٍ */
@@ -48,18 +43,15 @@ body {
   margin-top: -20px;
 }
 
-/* تنسيق الفقرة داخل العنوان */
 .heading p {
   font-size: 40px; /* تكبير حجم الخط */
   padding-top: 30px; /* إضافة مسافة فوق الفقرة */
 }
 
-/* تنسيق النموذج داخل الحاوية */
 .form {
   margin-top: 10px; /* إضافة مسافة فوق النموذج */
 }
 
-/* تنسيق حقل الإدخال */
 .form .input {
   max-width: 260px; /* تحديد الحد الأقصى للعرض */
   background: white; /* خلفية بيضاء لحقل الإدخال */
@@ -72,23 +64,19 @@ body {
   height: 40px;
 }
 
-/* تنسيق النص داخل الحقل (مؤشر النص) */
 .form .input::-moz-placeholder {
   color: rgb(170, 170, 170); /* تغيير لون النص في حالة عدم وجود مدخلات */
 }
 
-/* تنسيق النص داخل الحقل (مؤشر النص) */
 .form .input::placeholder {
   color: rgb(170, 170, 170); /* تغيير لون النص في حالة عدم وجود مدخلات */
 }
 
-/* تأثير عند تركيز المستخدم على الحقل */
 .form .input:focus {
   outline: none; /* إزالة الحدود عند التركيز */
   border-inline: 2px solid #05434f; /* تغيير لون الحافة عند التركيز */
 }
 
-/* تنسيق زر تسجيل الدخول */
 .form .signup-button {
   display: block; /* جعل الزر يظهر ككتلة */
   width: 100%; /* جعل الزر يعرض بشكل كامل */
@@ -104,19 +92,16 @@ body {
 height: 60px;
 }
 
-/* تأثير عند تحريك مؤشر الفأرة فوق الزر */
 .form .signup-button:hover {
   transform: scale(1.03); /* تكبير الزر عند التمرير */
   box-shadow: rgba(133, 189, 215, 0.8784313725) 0px 23px 10px -20px; /* تغيير تأثير الظل */
 }
 
-/* تأثير عند الضغط على الزر */
 .form .signup-button:active {
   transform: scale(0.95); /* تصغير الزر عند الضغط عليه */
   box-shadow: rgba(133, 189, 215, 0.8784313725) 0px 15px 10px -10px; /* تغيير تأثير الظل عند الضغط */
 }
 
-/* تنسيق حقل تحميل الملف */
 #file {
   margin: 15px; /* إضافة مسافة حول الحقل */
   border: 1px solid #ffffffa2; /* إضافة حدود خفيفة حول الحقل */
@@ -127,7 +112,6 @@ height: 60px;
 height:50px;
 }
 
-/* تنسيق زر تحميل الملف */
 #file::-webkit-file-upload-button {
   border: none; /* إزالة الحدود */
   border-radius: 2rem; /* زوايا دائرية للزر */
@@ -136,12 +120,10 @@ height:50px;
   margin-left: 10px; /* إضافة مسافة للجانب الأيسر */
 }
 
-/* تنسيق التسمية */
 label {
   margin-right: 20px; /* إضافة مسافة للجانب الأيمن */
 }
 
-/* تخصيص التنسيق في الشاشات الصغيرة (تحت 750px) */
 @media (max-width: 750px) {
   .container {
     max-width: 500px; /* تحديد الحد الأقصى للعرض */
@@ -162,12 +144,10 @@ label {
   }
 }
 
-/* إضافة تأثير التحريك على الصور */
 img {
   animation: img 4s ease infinite both; /* تعيين تأثير الحركة للصور */
 }
 
-/* تعريف الحركة (التحريك للأعلى والأسفل) */
 @keyframes img {
   0% {
     transform: translateY(0px); /* وضع الصورة في مكانها الأصلي */

@@ -1,9 +1,7 @@
 <?php
 require_once 'includes/functions.php';
 
-// Get some dynamic content for the about page
 try {
-    // Get total students and teachers
     $stmt = $pdo->prepare("SELECT COUNT(*) as count FROM users WHERE user_type = 'student'");
     $stmt->execute();
     $total_students = $stmt->fetch()['count'];
@@ -12,12 +10,10 @@ try {
     $stmt->execute();
     $total_teachers = $stmt->fetch()['count'];
     
-    // Get total courses
     $stmt = $pdo->prepare("SELECT COUNT(*) as count FROM courses WHERE is_active = 1");
     $stmt->execute();
     $total_courses = $stmt->fetch()['count'];
     
-    // Get total enrollments
     $stmt = $pdo->prepare("SELECT COUNT(*) as count FROM enrollments");
     $stmt->execute();
     $total_enrollments = $stmt->fetch()['count'];
@@ -30,7 +26,6 @@ try {
     $total_enrollments = 0;
 }
 
-// Check if user is logged in
 $is_logged_in = is_logged_in();
 $user = null;
 if ($is_logged_in) {
@@ -171,7 +166,6 @@ if ($is_logged_in) {
     </style>
 </head>
 <body>
-    <!-- Header Navigation -->
     <header class="header-nav">
         <a href="index.html" class="logo">
             <div class="name2" dir="ltr">
@@ -212,7 +206,6 @@ if ($is_logged_in) {
             <div class="blank"></div>
         </div>
 
-        <!-- Statistics Section -->
         <div class="stats-section">
             <div class="stats-grid">
                 <div class="stat-item">
@@ -297,9 +290,7 @@ if ($is_logged_in) {
     </div>
 
     <script>
-        // Add some interactivity
         document.addEventListener('DOMContentLoaded', function() {
-            // Animate statistics on scroll
             const stats = document.querySelectorAll('.stat-number');
             
             const observer = new IntersectionObserver((entries) => {

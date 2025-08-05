@@ -1,19 +1,16 @@
 <?php
 require_once 'includes/functions.php';
 
-// Set error reporting for debugging
 error_reporting(E_ALL);
 ini_set('display_errors', 0);
 ini_set('log_errors', 1);
 
-// Check if user is logged in and is a student
 if (!is_logged_in() || !is_student()) {
     redirect_with_message('login.html', 'يجب تسجيل الدخول كطالب للوصول لهذه الصفحة', 'error');
 }
 
 $user = get_current_user_data();
 
-// Handle form submission
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $full_name = trim($_POST['full_name'] ?? '');
     $email = trim($_POST['email'] ?? '');
@@ -22,7 +19,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $new_password = $_POST['new_password'] ?? '';
     $confirm_password = $_POST['confirm_password'] ?? '';
     
-    // Validation
     $errors = [];
     if (empty($full_name)) {
         $errors[] = 'الاسم الكامل مطلوب';
@@ -33,7 +29,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $errors[] = 'البريد الإلكتروني غير صحيح';
     }
     
-    // Check if email is already taken by another user
     if (!empty($email) && $email !== $user['email']) {
         $stmt = $pdo->prepare("SELECT id FROM users WHERE email = ? AND id != ?");
         $stmt->execute([$email, $_SESSION['user_id']]);
@@ -42,7 +37,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     }
     
-    // Password change validation
     if (!empty($new_password)) {
         if (empty($current_password)) {
             $errors[] = 'كلمة المرور الحالية مطلوبة لتغيير كلمة المرور';
@@ -58,12 +52,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (empty($errors)) {
         try {
             if (!empty($new_password)) {
-                // Update with password change
                 $hashed_password = password_hash($new_password, PASSWORD_DEFAULT);
                 $stmt = $pdo->prepare("UPDATE users SET full_name = ?, email = ?, phone = ?, password = ? WHERE id = ?");
                 $success = $stmt->execute([$full_name, $email, $phone, $hashed_password, $_SESSION['user_id']]);
             } else {
-                // Update without password change
                 $stmt = $pdo->prepare("UPDATE users SET full_name = ?, email = ?, phone = ? WHERE id = ?");
                 $success = $stmt->execute([$full_name, $email, $phone, $_SESSION['user_id']]);
             }
@@ -80,10 +72,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-// Get updated user data
 $user = get_current_user_data();
 
-// Get student statistics
 try {
     $stmt = $pdo->prepare("
         SELECT 
@@ -309,7 +299,6 @@ try {
             </div>
         <?php endif; ?>
 
-        <!-- Student Statistics -->
         <div class="stats-grid">
             <div class="stat-card">
                 <div class="stat-number"><?php echo $student_stats['total_courses'] ?? 0; ?></div>

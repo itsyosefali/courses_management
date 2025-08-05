@@ -1,12 +1,10 @@
 <?php
 require_once 'includes/functions.php';
 
-// Set error reporting for debugging
 error_reporting(E_ALL);
 ini_set('display_errors', 0);
 ini_set('log_errors', 1);
 
-// Check if user is logged in and is a student
 if (!is_logged_in() || !is_student()) {
     redirect_with_message('login.html', 'يجب تسجيل الدخول كطالب للوصول لهذه الصفحة', 'error');
 }
@@ -14,7 +12,6 @@ if (!is_logged_in() || !is_student()) {
 try {
     $user = get_current_user_data();
     if (!$user) {
-        // User not found in database, clear session and redirect
         session_destroy();
         redirect_with_message('login.html', 'حدث خطأ في الجلسة. يرجى تسجيل الدخول مرة أخرى', 'error');
     }

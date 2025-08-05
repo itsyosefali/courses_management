@@ -1,13 +1,11 @@
 <?php
 require_once 'includes/functions.php';
 
-// Set error reporting for debugging
 error_reporting(E_ALL);
 ini_set('display_errors', 0);
 ini_set('log_errors', 1);
 
 try {
-    // Get all active courses
     $stmt = $pdo->prepare("
         SELECT c.*, u.full_name as teacher_name, COUNT(e.id) as enrolled_students
         FROM courses c
@@ -20,7 +18,6 @@ try {
     $stmt->execute();
     $courses = $stmt->fetchAll();
 
-    // Check if user is logged in
     $is_logged_in = is_logged_in();
     $user_id = $is_logged_in ? $_SESSION['user_id'] : null;
     

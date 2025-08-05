@@ -1,8 +1,6 @@
 <?php
-// Setup script for ARG Academy
 echo "=== ARG Academy Setup ===\n";
 
-// Create necessary directories
 $directories = [
     'uploads',
     'uploads/certificates',
@@ -25,14 +23,12 @@ foreach ($directories as $dir) {
     }
 }
 
-// Database setup instructions
 echo "\n=== Database Setup ===\n";
 echo "1. Create a MySQL database named 'arg_academy'\n";
 echo "2. Import the schema from 'database/schema.sql'\n";
 echo "3. Update database credentials in 'config/database.php'\n";
 echo "4. Make sure PHP has PDO and MySQL extensions enabled\n";
 
-// Check PHP extensions
 echo "\n=== PHP Extensions Check ===\n";
 $required_extensions = ['pdo', 'pdo_mysql', 'json', 'mbstring'];
 
@@ -44,7 +40,6 @@ foreach ($required_extensions as $ext) {
     }
 }
 
-// Check file permissions
 echo "\n=== File Permissions Check ===\n";
 $files_to_check = [
     'config/database.php',

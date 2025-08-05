@@ -1,7 +1,6 @@
 <?php
 require_once '../includes/functions.php';
 
-// Set error reporting for debugging
 error_reporting(E_ALL);
 ini_set('display_errors', 0);
 ini_set('log_errors', 1);
@@ -10,7 +9,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $errors = [];
     
     try {
-        // Get and sanitize form data
         $full_name = sanitize_input($_POST['full-name'] ?? '');
         $username = sanitize_input($_POST['user-name'] ?? '');
         $email = sanitize_input($_POST['email'] ?? '');
@@ -21,7 +19,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $id_number = sanitize_input($_POST['ID'] ?? '');
         $grade = sanitize_input($_POST['grade'] ?? '');
         
-        // Validation
         if (empty($full_name)) {
             $errors[] = 'الاسم الكامل مطلوب';
         }
@@ -68,21 +65,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $errors[] = 'المستوى الدراسي مطلوب';
         }
         
-        // Check if username already exists
         $stmt = $pdo->prepare("SELECT id FROM users WHERE username = ?");
         $stmt->execute([$username]);
         if ($stmt->fetch()) {
             $errors[] = 'اسم المستخدم موجود مسبقاً';
         }
         
-        // Check if email already exists
         $stmt = $pdo->prepare("SELECT id FROM users WHERE email = ?");
         $stmt->execute([$email]);
         if ($stmt->fetch()) {
             $errors[] = 'البريد الإلكتروني موجود مسبقاً';
         }
         
-        // If no errors, proceed with registration
         if (empty($errors)) {
             try {
                 $hashed_password = hash_password($password);
@@ -101,7 +95,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $user_id = $pdo->lastInsertId();
                 
                 if ($user_id) {
-                    // Set session
                     $_SESSION['user_id'] = $user_id;
                     $_SESSION['user_type'] = 'student';
                     $_SESSION['username'] = $username;

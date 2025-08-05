@@ -1,6 +1,5 @@
 <?php
 session_start();
-// Try different possible paths for database config
 $config_paths = [
     __DIR__ . '/../config/database.php',
     __DIR__ . '/../../config/database.php',
@@ -21,7 +20,6 @@ if (!$config_loaded) {
     die("Could not load database configuration file");
 }
 
-// Function to sanitize input data
 function sanitize_input($data) {
     if (is_null($data)) return '';
     $data = trim($data);
@@ -30,37 +28,30 @@ function sanitize_input($data) {
     return $data;
 }
 
-// Function to hash passwords
 function hash_password($password) {
     return password_hash($password, PASSWORD_DEFAULT);
 }
 
-// Function to verify passwords
 function verify_password($password, $hash) {
     return password_verify($password, $hash);
 }
 
-// Function to generate random token
 function generate_token($length = 32) {
     return bin2hex(random_bytes($length));
 }
 
-// Function to check if user is logged in
 function is_logged_in() {
     return isset($_SESSION['user_id']);
 }
 
-// Function to check if user is teacher
 function is_teacher() {
     return isset($_SESSION['user_type']) && $_SESSION['user_type'] === 'teacher';
 }
 
-// Function to check if user is student
 function is_student() {
     return isset($_SESSION['user_type']) && $_SESSION['user_type'] === 'student';
 }
 
-// Function to get current user data
 function get_current_user_data() {
     if (!is_logged_in()) {
         return null;
@@ -77,7 +68,6 @@ function get_current_user_data() {
     }
 }
 
-// Function to redirect with message
 function redirect_with_message($url, $message, $type = 'success') {
     $_SESSION['message'] = $message;
     $_SESSION['message_type'] = $type;
@@ -85,7 +75,6 @@ function redirect_with_message($url, $message, $type = 'success') {
     exit();
 }
 
-// Function to display messages
 function display_message() {
     if (isset($_SESSION['message'])) {
         $type = $_SESSION['message_type'] ?? 'info';
@@ -115,7 +104,6 @@ function display_message() {
     return '';
 }
 
-// Function to format date
 function format_date($date, $format = 'Y-m-d H:i:s') {
     if (empty($date)) return '';
     try {
@@ -125,19 +113,16 @@ function format_date($date, $format = 'Y-m-d H:i:s') {
     }
 }
 
-// Function to calculate course progress
 function calculate_course_progress($student_id, $course_id) {
     try {
         global $pdo;
         
-        // Get total lessons in course
         $stmt = $pdo->prepare("SELECT COUNT(*) as total FROM lessons WHERE course_id = ?");
         $stmt->execute([$course_id]);
         $total_lessons = $stmt->fetch()['total'];
         
         if ($total_lessons == 0) return 0;
         
-        // Get completed lessons
         $stmt = $pdo->prepare("
             SELECT COUNT(*) as completed 
             FROM lesson_progress lp 
@@ -154,7 +139,6 @@ function calculate_course_progress($student_id, $course_id) {
     }
 }
 
-// Function to get course price with discount
 function get_course_price_with_discount($course_id) {
     try {
         global $pdo;
@@ -173,7 +157,6 @@ function get_course_price_with_discount($course_id) {
     }
 }
 
-// Function to check if student is enrolled in course
 function is_enrolled($student_id, $course_id) {
     try {
         global $pdo;
@@ -187,7 +170,6 @@ function is_enrolled($student_id, $course_id) {
     }
 }
 
-// Function to get user's wallet balance
 function get_wallet_balance($user_id) {
     try {
         global $pdo;
@@ -203,7 +185,6 @@ function get_wallet_balance($user_id) {
     }
 }
 
-// Function to update wallet balance
 function update_wallet_balance($user_id, $amount, $transaction_type, $description = '', $existing_transaction = false) {
     try {
         global $pdo;
@@ -212,11 +193,9 @@ function update_wallet_balance($user_id, $amount, $transaction_type, $descriptio
             $pdo->beginTransaction();
         }
         
-        // Update user's wallet balance
         $stmt = $pdo->prepare("UPDATE users SET wallet_balance = wallet_balance + ? WHERE id = ?");
         $stmt->execute([$amount, $user_id]);
         
-        // Record transaction
         $stmt = $pdo->prepare("
             INSERT INTO transactions (user_id, amount, transaction_type, description, status) 
             VALUES (?, ?, ?, ?, 'completed')
@@ -236,22 +215,18 @@ function update_wallet_balance($user_id, $amount, $transaction_type, $descriptio
     }
 }
 
-// Function to validate email
 function validate_email($email) {
     return filter_var($email, FILTER_VALIDATE_EMAIL);
 }
 
-// Function to validate phone number (Saudi format)
 function validate_phone($phone) {
     return true;
 }
 
-// Function to validate Saudi ID
 function validate_saudi_id($id) {
     return true;
 }
 
-// Function to upload file
 function upload_file($file, $target_dir = 'uploads/', $allowed_types = ['jpg', 'jpeg', 'png', 'pdf']) {
     try {
         if (!isset($file['tmp_name']) || empty($file['tmp_name'])) {
@@ -285,7 +260,6 @@ function upload_file($file, $target_dir = 'uploads/', $allowed_types = ['jpg', '
     }
 }
 
-// Function to get course lessons
 function get_course_lessons($course_id) {
     try {
         global $pdo;
@@ -303,7 +277,6 @@ function get_course_lessons($course_id) {
     }
 }
 
-// Function to get student's enrolled courses
 function get_student_courses($student_id) {
     try {
         global $pdo;
@@ -325,7 +298,6 @@ function get_student_courses($student_id) {
     }
 }
 
-// Function to get teacher's courses
 function get_teacher_courses($teacher_id) {
     try {
         global $pdo;
@@ -346,12 +318,10 @@ function get_teacher_courses($teacher_id) {
     }
 }
 
-// Function to get recent announcements
 function get_recent_announcements($limit = 5) {
     try {
         global $pdo;
         
-        // Fix: Use LIMIT with integer instead of parameter
         $limit = (int)$limit;
         
         $stmt = $pdo->prepare("
@@ -370,13 +340,11 @@ function get_recent_announcements($limit = 5) {
     }
 }
 
-// Function to handle database errors gracefully
 function handle_database_error($e, $context = '') {
     error_log("Database error in $context: " . $e->getMessage());
     return false;
 }
 
-// Function to validate and sanitize user input
 function validate_user_input($data, $rules = []) {
     $errors = [];
     $sanitized = [];
@@ -384,10 +352,8 @@ function validate_user_input($data, $rules = []) {
     foreach ($rules as $field => $rule) {
         $value = $data[$field] ?? '';
         
-        // Sanitize
         $sanitized[$field] = sanitize_input($value);
         
-        // Validate based on rules
         if (isset($rule['required']) && $rule['required'] && empty($sanitized[$field])) {
             $errors[] = "حقل $field مطلوب";
         }

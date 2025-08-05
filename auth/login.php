@@ -1,7 +1,6 @@
 <?php
 require_once '../includes/functions.php';
 
-// Set error reporting for debugging
 error_reporting(E_ALL);
 ini_set('display_errors', 0);
 ini_set('log_errors', 1);
@@ -10,11 +9,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $errors = [];
     
     try {
-        // Get and sanitize form data
         $email = sanitize_input($_POST['email'] ?? '');
         $password = $_POST['password'] ?? '';
         
-        // Validation
         if (empty($email)) {
             $errors[] = 'البريد الإلكتروني مطلوب';
         }
@@ -23,25 +20,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $errors[] = 'كلمة المرور مطلوبة';
         }
         
-        // If no validation errors, attempt login
         if (empty($errors)) {
             try {
-                // Check if user exists
                 $stmt = $pdo->prepare("SELECT * FROM users WHERE email = ? AND is_active = 1");
                 $stmt->execute([$email]);
                 $user = $stmt->fetch();
                 
                 if ($user && verify_password($password, $user['password'])) {
-                    // Login successful
                     $_SESSION['user_id'] = $user['id'];
                     $_SESSION['user_type'] = $user['user_type'];
                     $_SESSION['username'] = $user['username'];
                     $_SESSION['full_name'] = $user['full_name'];
                     
-                    // Log successful login
                     error_log("Successful login for user: " . $user['email']);
                     
-                    // Redirect based on user type
                     if ($user['user_type'] === 'student') {
                         redirect_with_message('../Student.php', 'تم تسجيل الدخول بنجاح! مرحباً بك مرة أخرى', 'success');
                     } else {

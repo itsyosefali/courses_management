@@ -1,19 +1,16 @@
 <?php
 require_once 'includes/functions.php';
 
-// Set error reporting for debugging
 error_reporting(E_ALL);
 ini_set('display_errors', 0);
 ini_set('log_errors', 1);
 
-// Check if user is logged in and is a teacher
 if (!is_logged_in() || !is_teacher()) {
     redirect_with_message('login.html', 'يجب تسجيل الدخول كمعلم للوصول لهذه الصفحة', 'error');
 }
 
 $user = get_current_user_data();
 
-// Handle course actions
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
     if ($_POST['action'] === 'toggle_status' && isset($_POST['course_id'])) {
         $course_id = $_POST['course_id'];
@@ -28,7 +25,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
     } elseif ($_POST['action'] === 'delete' && isset($_POST['course_id'])) {
         $course_id = $_POST['course_id'];
         try {
-            // Check if course has enrollments
             $stmt = $pdo->prepare("SELECT COUNT(*) FROM enrollments WHERE course_id = ?");
             $stmt->execute([$course_id]);
             $enrollment_count = $stmt->fetchColumn();
@@ -47,7 +43,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
     }
 }
 
-// Get teacher's courses with detailed information
 try {
     $stmt = $pdo->prepare("
         SELECT 
@@ -69,7 +64,6 @@ try {
     $courses = [];
 }
 
-// Get statistics
 $total_courses = count($courses);
 $active_courses = count(array_filter($courses, function($course) { return $course['is_active'] ?? false; }));
 $total_students = array_sum(array_column($courses, 'enrolled_students'));
@@ -131,7 +125,6 @@ $total_revenue = array_sum(array_column($courses, 'total_revenue'));
 
             <?php echo display_message(); ?>
 
-            <!-- Statistics -->
             <div class="stats-container" style="margin-bottom: 2rem;">
                 <div class="stat-item">
                     <div class="stat-icon">📚</div>
@@ -163,7 +156,6 @@ $total_revenue = array_sum(array_column($courses, 'total_revenue'));
                 </div>
             </div>
 
-            <!-- Search and Filter -->
             <div class="card" style="margin-bottom: 1.5rem;">
                 <div style="display: flex; gap: 1rem; align-items: center;">
                     <input type="text" id="searchInput" placeholder="بحث في الدورات..." 
@@ -176,7 +168,6 @@ $total_revenue = array_sum(array_column($courses, 'total_revenue'));
                 </div>
             </div>
 
-            <!-- Courses List -->
             <div class="card">
                 <h3 style="margin: 0 0 1rem 0; color: #333;">
                     <i class="fas fa-list"></i>
@@ -277,7 +268,6 @@ $total_revenue = array_sum(array_column($courses, 'total_revenue'));
 </div>
 
 <script>
-// Search functionality
 document.getElementById('searchInput').addEventListener('input', function() {
     const searchTerm = this.value.toLowerCase();
     const rows = document.querySelectorAll('.course-row');
@@ -294,7 +284,6 @@ document.getElementById('searchInput').addEventListener('input', function() {
     });
 });
 
-// Status filter
 document.getElementById('statusFilter').addEventListener('change', function() {
     const filterValue = this.value;
     const rows = document.querySelectorAll('.course-row');

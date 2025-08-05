@@ -1,21 +1,17 @@
 <?php
 require_once 'includes/functions.php';
 
-// Set error reporting for debugging
 error_reporting(E_ALL);
 ini_set('display_errors', 0);
 ini_set('log_errors', 1);
 
-// Check if user is logged in and is a teacher
 if (!is_logged_in() || !is_teacher()) {
     redirect_with_message('login.html', 'يجب تسجيل الدخول كمعلم للوصول لهذه الصفحة', 'error');
 }
 
 $user = get_current_user_data();
 
-// Get comprehensive analytics data
 try {
-    // Total courses and revenue
     $stmt = $pdo->prepare("
         SELECT 
             COUNT(*) as total_courses,
@@ -27,7 +23,6 @@ try {
     $stmt->execute([$_SESSION['user_id']]);
     $course_stats = $stmt->fetch();
 
-    // Total students and enrollments
     $stmt = $pdo->prepare("
         SELECT 
             COUNT(DISTINCT u.id) as total_students,
@@ -41,7 +36,6 @@ try {
     $stmt->execute([$_SESSION['user_id']]);
     $student_stats = $stmt->fetch();
 
-    // Monthly enrollments (last 6 months)
     $stmt = $pdo->prepare("
         SELECT 
             DATE_FORMAT(e.enrolled_at, '%Y-%m') as month,
@@ -56,7 +50,6 @@ try {
     $stmt->execute([$_SESSION['user_id']]);
     $monthly_enrollments = $stmt->fetchAll();
 
-    // Top performing courses
     $stmt = $pdo->prepare("
         SELECT 
             c.title,
@@ -73,7 +66,6 @@ try {
     $stmt->execute([$_SESSION['user_id']]);
     $top_courses = $stmt->fetchAll();
 
-    // Recent activity
     $stmt = $pdo->prepare("
         SELECT 
             'enrollment' as type,
@@ -150,7 +142,6 @@ try {
 
             <?php echo display_message(); ?>
 
-            <!-- Key Statistics -->
             <div class="stats-container" style="margin-bottom: 2rem;">
                 <div class="stat-item">
                     <div class="stat-icon">📚</div>
@@ -182,9 +173,7 @@ try {
                 </div>
             </div>
 
-            <!-- Charts Row -->
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 2rem;">
-                <!-- Monthly Enrollments Chart -->
                 <div class="card">
                     <h3 style="margin: 0 0 1rem 0; color: #333;">
                         <i class="fas fa-chart-line"></i>
@@ -193,7 +182,6 @@ try {
                     <canvas id="enrollmentsChart" width="400" height="200"></canvas>
                 </div>
 
-                <!-- Course Performance Chart -->
                 <div class="card">
                     <h3 style="margin: 0 0 1rem 0; color: #333;">
                         <i class="fas fa-chart-pie"></i>
@@ -203,9 +191,7 @@ try {
                 </div>
             </div>
 
-            <!-- Top Courses and Recent Activity -->
             <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
-                <!-- Top Performing Courses -->
                 <div class="card">
                     <h3 style="margin: 0 0 1rem 0; color: #333;">
                         <i class="fas fa-trophy"></i>
@@ -243,7 +229,6 @@ try {
                     <?php endif; ?>
                 </div>
 
-                <!-- Recent Activity -->
                 <div class="card">
                     <h3 style="margin: 0 0 1rem 0; color: #333;">
                         <i class="fas fa-clock"></i>
@@ -279,7 +264,6 @@ try {
 </div>
 
 <script>
-// Monthly Enrollments Chart
 const enrollmentsCtx = document.getElementById('enrollmentsChart').getContext('2d');
 const enrollmentsData = <?php echo json_encode($monthly_enrollments); ?>;
 
@@ -315,7 +299,6 @@ new Chart(enrollmentsCtx, {
     }
 });
 
-// Course Performance Chart
 const coursesCtx = document.getElementById('coursesChart').getContext('2d');
 const coursesData = <?php echo json_encode($top_courses); ?>;
 

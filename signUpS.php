@@ -59,7 +59,6 @@
 
 
    
- <!-- المستوى الدراسي  -->
  
    <div class="group-selection">
     <label for="grade">المستوى الدراسي:</label>

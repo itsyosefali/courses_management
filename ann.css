@@ -1,10 +1,8 @@
-/* استدعاء الخط المخصص NotoKufiArabic-Light */
 @font-face {
   font-family: NotoKufiArabic-Light; /* تعريف اسم الخط */
   src: url(fonts/NotoKufiArabic-Light.ttf); /* تحديد مسار الخط */
 }
 
-/* إعادة ضبط القيم الافتراضية لجميع العناصر */
 * {
   font-family: NotoKufiArabic-Light; /* استخدام الخط المخصص لجميع العناصر */
   margin: 0;
@@ -12,7 +10,6 @@
   box-sizing: border-box; /* التأكد من أن المسافات الداخلية والحدود تُحسب ضمن أبعاد العناصر */
 }
 
-/* تنسيق الجسم */
 body {
   background-image: linear-gradient(-45deg, #9EBAF3, #EEF3D2, #fc8884c0); /* خلفية بتدرج لوني */
   background-attachment: fixed; /* تثبيت الخلفية أثناء التمرير */
@@ -27,7 +24,6 @@ body {
   backdrop-filter: blur(10px); /* إضافة تأثير التمويه على الخلفية */
 }
 
-/* تنسيق الحاوية */
 .container {
   grid-area: container; /* تخصيص مكان الحاوية في التخطيط */
   background: linear-gradient(0deg, rgb(255, 255, 255, -2) 0%, rgb(244, 247, 251, -2)); /* تأثير التدرج في الخلفية */
@@ -38,7 +34,6 @@ body {
   box-shadow: 5px 5px 5px 2px rgba(125, 119, 119, 0.43); /* إضافة ظل خفيف للحاوية */
 }
 
-/* تنسيق العنوان داخل الحاوية */
 .heading {
   display: flex; /* استخدام Flexbox لتوزيع العناصر داخل العنوان */
   
@@ -47,18 +42,15 @@ body {
   color: #160851; /* تحديد لون النص */
 }
 
-/* تنسيق الفقرة داخل العنوان */
 .heading p {
   font-size: 50px; /* تكبير حجم الخط */
   padding-top: 30px; /* إضافة مسافة فوق الفقرة */
 }
 
-/* تنسيق النموذج داخل الحاوية */
 .form {
   margin-top: 10px; /* إضافة مسافة فوق النموذج */
 }
 
-/* تنسيق حقل الإدخال */
 .form .input {
   max-width: 260px; /* تحديد الحد الأقصى للعرض */
   background: white; /* خلفية بيضاء لحقل الإدخال */
@@ -70,17 +62,14 @@ body {
   border-inline: 2px solid transparent; /* تظليل الحافة بدون حدود مرئية */
 }
 
-/* تنسيق النص داخل الحقل (مؤشر النص) */
 .form .input::-moz-placeholder {
   color: rgb(170, 170, 170); /* تغيير لون النص في حالة عدم وجود مدخلات */
 }
 
-/* تنسيق النص داخل الحقل (مؤشر النص) */
 .form .input::placeholder {
   color: rgb(170, 170, 170); /* تغيير لون النص في حالة عدم وجود مدخلات */
 }
 
-/* تأثير عند تركيز المستخدم على الحقل */
 .form .input:focus {
   outline: none; /* إزالة الحدود عند التركيز */
   border-inline: 2px solid #05434f; /* تغيير لون الحافة عند التركيز */
@@ -116,7 +105,6 @@ body {
 
 
 
-/* تنسيق حقل تحميل الملف */
 #file {
   margin: 15px; /* إضافة مسافة حول الحقل */
   border: 1px solid #ffffffa2; /* إضافة حدود خفيفة حول الحقل */
@@ -128,7 +116,6 @@ body {
 
 }
 
-/* تنسيق زر تحميل الملف */
 #file::-webkit-file-upload-button {
   border: none; /* إزالة الحدود */
   border-radius: 2rem; /* زوايا دائرية للزر */
@@ -140,12 +127,10 @@ body {
 
 
 
-/* تنسيق التسمية */
 label {
   margin-right: 20px; /* إضافة مسافة للجانب الأيمن */
 }
 
-/* تخصيص التنسيق في الشاشات الصغيرة (تحت 750px) */
 @media (max-width: 750px) {
   .container {
     max-width: 500px; /* تحديد الحد الأقصى للعرض */
@@ -165,12 +150,10 @@ label {
   }
 }
 
-/* إضافة تأثير التحريك على الصور */
 img {
   animation: img 4s ease infinite both; /* تعيين تأثير الحركة للصور */
 }
 
-/* تعريف الحركة (التحريك للأعلى والأسفل) */
 @keyframes img {
   0% {
     transform: translateY(0px); /* وضع الصورة في مكانها الأصلي */

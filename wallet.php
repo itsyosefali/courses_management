@@ -1,12 +1,10 @@
 <?php
 require_once 'includes/functions.php';
 
-// Set error reporting for debugging
 error_reporting(E_ALL);
 ini_set('display_errors', 0);
 ini_set('log_errors', 1);
 
-// Check if user is logged in
 if (!is_logged_in()) {
     redirect_with_message('login.html', 'يجب تسجيل الدخول لعرض المحفظة', 'error');
 }
@@ -18,7 +16,6 @@ try {
         redirect_with_message('login.html', 'حدث خطأ في الجلسة. يرجى تسجيل الدخول مرة أخرى', 'error');
     }
 
-    // Get user's transactions
     $stmt = $pdo->prepare("
         SELECT * FROM transactions 
         WHERE user_id = ? 
@@ -28,7 +25,6 @@ try {
     $stmt->execute([$_SESSION['user_id']]);
     $transactions = $stmt->fetchAll();
 
-    // Handle deposit form submission
     if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['deposit_amount'])) {
         $amount = floatval($_POST['deposit_amount']);
         

@@ -1,7 +1,6 @@
 <?php
 require_once 'includes/functions.php';
 
-// Check if user is logged in and is a student
 if (!is_logged_in() || !is_student()) {
     redirect_with_message('login.html', 'يجب تسجيل الدخول كطالب لعرض الدروس', 'error');
 }
@@ -11,12 +10,10 @@ if (!$course_id) {
     redirect_with_message('Student.php', 'معرف الدورة غير صحيح', 'error');
 }
 
-// Check if student is enrolled in this course
 if (!is_enrolled($_SESSION['user_id'], $course_id)) {
     redirect_with_message('courses.php', 'يجب التسجيل في الدورة أولاً', 'error');
 }
 
-// Get course details
 $stmt = $pdo->prepare("SELECT * FROM courses WHERE id = ?");
 $stmt->execute([$course_id]);
 $course = $stmt->fetch();
@@ -25,13 +22,10 @@ if (!$course) {
     redirect_with_message('Student.php', 'الدورة غير موجودة', 'error');
 }
 
-// Get course lessons
 $lessons = get_course_lessons($course_id);
 
-// Get student's progress for this course
 $progress = calculate_course_progress($_SESSION['user_id'], $course_id);
 
-// Update course progress
 $stmt = $pdo->prepare("UPDATE enrollments SET progress_percentage = ? WHERE student_id = ? AND course_id = ?");
 $stmt->execute([$progress, $_SESSION['user_id'], $course_id]);
 ?>
@@ -76,7 +70,6 @@ $stmt->execute([$progress, $_SESSION['user_id'], $course_id]);
 <div class="container">
     <?php echo display_message(); ?>
     
-    <!-- Course Header -->
     <div class="course-header">
         <h2><?php echo htmlspecialchars($course['title']); ?></h2>
         <div class="course-progress">
@@ -87,7 +80,6 @@ $stmt->execute([$progress, $_SESSION['user_id'], $course_id]);
         </div>
     </div>
 
-    <!-- Lessons Section -->
     <div class="lessons-section">
         <h2>قائمة الدروس</h2>
         
@@ -95,7 +87,6 @@ $stmt->execute([$progress, $_SESSION['user_id'], $course_id]);
             <div class="lessons">
                 <?php foreach ($lessons as $index => $lesson): ?>
                     <?php
-                    // Check if lesson is completed
                     $stmt = $pdo->prepare("SELECT is_completed FROM lesson_progress WHERE student_id = ? AND lesson_id = ?");
                     $stmt->execute([$_SESSION['user_id'], $lesson['id']]);
                     $lesson_progress = $stmt->fetch();
@@ -132,7 +123,6 @@ $stmt->execute([$progress, $_SESSION['user_id'], $course_id]);
         <?php endif; ?>
     </div>
 
-    <!-- Video Section -->
     <div class="video-section">
         <div class="lesson-info" id="lessonInfo">
             <div class="lesson-content" id="lessonContent">
@@ -156,18 +146,15 @@ $stmt->execute([$progress, $_SESSION['user_id'], $course_id]);
 
 <script>
 function loadLesson(lessonId, videoUrl, title, description) {
-    // Show loading state
     const content = document.getElementById('lessonContent');
     content.innerHTML = `
         <div class="loading" style="margin: 2rem auto;"></div>
         <p>جاري تحميل الدرس...</p>
     `;
     
-    // Update video source
     const video = document.getElementById('videoFrame');
     video.src = videoUrl;
     
-    // Update lesson content after a short delay for smooth transition
     setTimeout(() => {
         content.innerHTML = `
             <h2>${title}</h2>
@@ -178,15 +165,12 @@ function loadLesson(lessonId, videoUrl, title, description) {
             </button>
         `;
         
-        // Add success animation
         content.classList.add('success-animation');
         setTimeout(() => content.classList.remove('success-animation'), 600);
     }, 500);
     
-    // Mark lesson as watched
     markLessonAsWatched(lessonId);
     
-    // Scroll to video on mobile
     if (window.innerWidth <= 768) {
         document.querySelector('.video-section').scrollIntoView({ 
             behavior: 'smooth' 
@@ -212,7 +196,6 @@ function markAsCompleted(lessonId) {
     const button = event.target;
     const originalText = button.innerHTML;
     
-    // Show loading state
     button.innerHTML = '<div class="loading"></div> تحديث...';
     button.disabled = true;
     
@@ -227,18 +210,14 @@ function markAsCompleted(lessonId) {
     }).then(response => response.json())
     .then(data => {
         if (data.success) {
-            // Update UI to show completed
             const lessonCard = document.querySelector(`[onclick*="${lessonId}"]`);
             lessonCard.classList.add('completed');
             
-            // Update button
             button.innerHTML = '<i class="fas fa-check"></i> تم التحديد';
             button.style.background = 'linear-gradient(45deg, #28a745, #20c997)';
             
-            // Show success message
             showNotification('تم تحديد الدرس كمكتمل بنجاح!', 'success');
             
-            // Update progress after a delay
             setTimeout(() => {
                 location.reload();
             }, 2000);
@@ -254,7 +233,6 @@ function markAsCompleted(lessonId) {
 }
 
 function showNotification(message, type) {
-    // Create notification element
     const notification = document.createElement('div');
     notification.style.cssText = `
         position: fixed;
@@ -274,12 +252,10 @@ function showNotification(message, type) {
     
     document.body.appendChild(notification);
     
-    // Animate in
     setTimeout(() => {
         notification.style.transform = 'translateX(0)';
     }, 100);
     
-    // Remove after 3 seconds
     setTimeout(() => {
         notification.style.transform = 'translateX(100%)';
         setTimeout(() => {
@@ -288,7 +264,6 @@ function showNotification(message, type) {
     }, 3000);
 }
 
-// Add smooth scrolling for lesson cards
 document.addEventListener('DOMContentLoaded', function() {
     const lessonCards = document.querySelectorAll('.lesson-card');
     lessonCards.forEach(card => {

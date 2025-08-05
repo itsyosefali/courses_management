@@ -95,7 +95,6 @@ header {
 
 
 
-/* تصميم مربع البحث */
 .InputContainer {
     
    font-family:NotoKufiArabic-Light;
@@ -105,14 +104,12 @@ header {
     align-items: center; /* محاذاة المحتوى عموديًا */
     justify-content: center; /* محاذاة المحتوى أفقيًا */
     background: linear-gradient(to bottom, #9ebaf397, #eef3d2ae, #fc88847e); 
-    /* تدرج لوني للخلفية */
     border-radius: 30px; /* جعل الزوايا دائرية */
     overflow: hidden; /* منع تجاوز المحتوى للحواف */
     cursor: pointer; /* تغيير المؤشر عند التمرير */
     box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.075); /* إضافة ظل خفيف للحاوية */
 }
 
-/* تصميم حقل الإدخال */
 .input {
     
    font-family:NotoKufiArabic-Light;
@@ -129,12 +126,10 @@ header {
     font-size: 13.4px; /* حجم الخط */
 }
 
-/* إخفاء مربع الاختيار المستخدم في القائمة */
 #menu-toggle {
     display: none;
 }
 
-/* تصميم زر ☰ لإظهار القائمة */
 .menu-icon {
     
     display: none; /* إخفاؤه بشكل افتراضي */
@@ -174,7 +169,6 @@ header {
 
 }
 
-/* أنماط البطاقة العامة */
 .cardHTML, .cardCSS, .cardJS {
     display: flex;
     flex-direction: column; /* ترتيب المحتويات عموديًا */
@@ -190,7 +184,6 @@ header {
     border:20px solid rgba(255, 249, 249, 0.262); /* تحديد حدود شفافة */
 }
 
-/* تنسيق النصوص والعناوين داخل البطاقات */
 .p-html, .p-js, .p-css, h1 {
     font-size: 18px;
     font-weight: bold;
@@ -219,13 +212,11 @@ h1 {
   z-index: 1;
 }
 
-/* تأكد أن البطاقات position: relative; */
 .cardHTML, .cardCSS, .cardJS {
   position: relative;
 }
 
 
-/* تأثير التحويم على بطاقة CSS */
 .cardCSS:hover {
     background-color: #f2f7d3d3; /* تغيير لون الخلفية عند التحويم */
     transition: 0.5s linear; /* تأثير انتقالي سلس */
@@ -240,7 +231,6 @@ h1 {
     }
 }
 
-/* تأثير التحويم على بطاقة HTML */
 .cardHTML:hover {
     background-color: #f2f7d3d3;
     transition: 0.5s linear;
@@ -255,7 +245,6 @@ h1 {
     }
 }
 
-/* تأثير التحويم على بطاقة JavaScript */
 .cardJS:hover {
     background-color: #f2f7d3c2;
     transition: 0.5s linear;
@@ -270,7 +259,6 @@ h1 {
     }
 }
 
-/* تحويل التصميم إلى قائمة جانبية عند تصغير الشاشة */
 @media (max-width: 950px) {
     .title {
         display: flex;
@@ -284,7 +272,6 @@ h1 {
     }
 }
 
-/*=========================================================================*/
 @media (max-width: 1350px) {
     .menu-icon {
         display: block; /* إظهار زر القائمة */
@@ -302,7 +289,6 @@ h1 {
        
     }
 
-    /* تصميم الروابط داخل القائمة */
     .links a {
         display: block; /* جعل الروابط في أسطر منفصلة */
         padding: 10px; /* مسافة داخلية */
@@ -315,9 +301,7 @@ h1 {
     }  
 }
 
-/*=========================================================================*/
 
-/* عند تحديد الـ checkbox، تظهر القائمة */
 #menu-toggle:checked ~ .links {
     display: flex; /* إظهار القائمة */
 }
@@ -325,7 +309,6 @@ h1 {
     animation: book 4s ease infinite both; /* تطبيق حركة التحريك (animation) على العنصر */
 }
 
-/* تعريف الحركة باسم "book" */
 @keyframes book {
     0% {
         transform: translateY(0px); /* بداية الحركة: يبقى العنصر في مكانه */
@@ -347,7 +330,6 @@ h1 {
 
 
 
-/* تحديد تأثير التحريك لكل حرف داخل العنصر الأب .name2 */
 .name2 span {
     display: inline-block; /* جعل كل حرف عنصرًا منفصلًا ليسهل تحريكه */
     opacity: 0; /* يبدأ الحرف غير مرئي */
@@ -355,7 +337,6 @@ h1 {
     animation: fadeBounce 3s ease-in forwards; /* تطبيق التحريك */
 }
 
-/* تعريف حركة fadeBounce */
 @keyframes fadeBounce {
     0% {
         opacity: 0; /* الحرف غير مرئي */
@@ -370,8 +351,6 @@ h1 {
     }
 }
 
-/* تأخير عرض كل حرف لجعل الحروف تظهر بشكل متتابع */
-/* nth-child(n) تعني تحديد العنصر بناءً على ترتيبه داخل العنصر الأب */
 .name2 span:nth-child(1) { 
     animation-delay: 0.1s; /* تأخير بداية التحريك للحرف الأول */
     animation-iteration-count: infinite; /* تكرار التحريك بلا نهاية */

@@ -1,12 +1,10 @@
 <?php
 require_once 'includes/functions.php';
 
-// Set error reporting for debugging
 error_reporting(E_ALL);
 ini_set('display_errors', 0);
 ini_set('log_errors', 1);
 
-// Check if user is logged in and is a teacher
 if (!is_logged_in() || !is_teacher()) {
     redirect_with_message('login.html', 'يجب تسجيل الدخول كمعلم للوصول لهذه الصفحة', 'error');
 }
@@ -14,7 +12,6 @@ if (!is_logged_in() || !is_teacher()) {
 $user = get_current_user_data();
 $course_id = $_GET['id'] ?? 0;
 
-// Get course data
 try {
     $stmt = $pdo->prepare("SELECT * FROM courses WHERE id = ? AND teacher_id = ?");
     $stmt->execute([$course_id, $_SESSION['user_id']]);
@@ -28,7 +25,6 @@ try {
     redirect_with_message('teacher.php', 'حدث خطأ في النظام', 'error');
 }
 
-// Get enrolled students
 try {
     $stmt = $pdo->prepare("
         SELECT u.id, u.full_name, u.email, u.created_at, e.enrolled_at
@@ -94,7 +90,6 @@ try {
 
             <?php echo display_message(); ?>
 
-            <!-- Course Info -->
             <div class="card" style="margin-bottom: 1.5rem;">
                 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
                     <h3 style="margin: 0; color: #333;">
@@ -118,7 +113,6 @@ try {
                 </div>
             </div>
 
-            <!-- Students List -->
             <div class="card">
                 <h3 style="margin: 0 0 1rem 0; color: #333;">
                     <i class="fas fa-user-graduate"></i>
