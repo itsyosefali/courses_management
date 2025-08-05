@@ -1,0 +1,175 @@
+/* استدعاء خط NotoKufiArabic-Light */
+@font-face {
+  font-family: NotoKufiArabic-Light;
+  src: url(fonts/NotoKufiArabic-Light.ttf);
+}
+
+/* إعادة ضبط القيم الافتراضية للعناصر */
+* {
+  font-family: NotoKufiArabic-Light; /* استخدام الخط المخصص */
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; /* يضمن أن الحدود والحواف الداخلية تُحتسب ضمن الأبعاد الكلية للعنصر */
+}
+
+/* تصميم خلفية الصفحة والجسم */
+body {
+  background-image: linear-gradient(-45deg, #9EBAF3, #EEF3D2, #fc8884c0); /* تدرج لوني للخلفية */
+  background-attachment: fixed; /* تثبيت الخلفية عند التمرير */
+  min-height: 100vh; /* يجعل الطول لا يقل عن ارتفاع الشاشة */
+  display: grid;
+
+  /* تحديد تخطيط الصفحة باستخدام Grid */
+  grid-template-columns: 1fr auto 1fr; /* تقسيم الصفحة إلى ثلاثة أعمدة */
+  gap: 10px;
+  grid-template-areas:
+    "navBar container none"; /* تخصيص أماكن العناصر */
+ 
+  background-color: rgba(132, 236, 236, 0.753);
+  font-family: Arial, sans-serif; /* استخدام خط احتياطي في حالة تعذر تحميل الخط المخصص */
+  backdrop-filter: blur(10px); /* تأثير التمويه على الخلفية */
+}
+
+/* تنسيق الحاوية الأساسية */
+.container {
+  grid-area: container;
+  max-width: 400px; /* تحديد الحد الأقصى للعرض */
+  background: #F8F9FD;
+  background: linear-gradient(0deg, rgba(255, 255, 255, -2) 0%, rgba(244, 247, 251, -2)); /* تأثير تدرج */
+  border-radius: 40px; /* زوايا دائرية للحاوية */
+  padding: 25px 35px; /* مسافات داخلية */
+  border: 3px solid #ffffffa2; /* تحديد الحدود */
+  margin: 20px;
+  box-shadow: 5px 5px 5px 2px rgba(125, 119, 119, 0.43); /* إضافة ظل للحاوية */
+}
+
+/* تنسيق العنوان */
+.heading {
+  text-align: center;
+  font-weight: 900;
+  font-size: 30px;
+  color: #160851;
+}
+
+/* تنسيق النموذج */
+.form {
+  margin-top: 20px;
+}
+
+/* تنسيق حقول الإدخال */
+.form .input {
+  width: 100%;
+  background: white;
+  border: none;
+  padding: 15px 20px;
+  border-radius: 20px;
+  margin-top: 15px;
+  box-shadow: #cff0ff 0px 10px 10px -5px; /* تأثير الظل */
+  border-inline: 2px solid transparent;
+}
+
+/* تنسيق النصوص التوضيحية داخل حقول الإدخال */
+.form .input::placeholder {
+  color: rgb(170, 170, 170);
+}
+
+/* تأثير عند تركيز المستخدم على حقل الإدخال */
+.form .input:focus {
+  outline: none;
+  border-inline: 2px solid #05434f;
+}
+
+/* تنسيق رابط استعادة كلمة المرور */
+.form .forgot-password {
+  display: block;
+  margin-top: 10px;
+  margin-left: 10px;
+}
+
+/* تنسيق رابط استعادة كلمة المرور */
+.form .forgot-password a {
+  font-size: 11px;
+  color: #0099ff;
+  text-decoration: none;
+}
+
+/* تنسيق نص استعادة كلمة المرور */
+.forgot-password {
+  font-size: 14px;
+  margin-right: 20px;
+}
+
+/* تنسيق زر تسجيل الدخول */
+.form .login-button {
+  display: block;
+  width: 100%;
+  font-weight: bold;
+  background: linear-gradient(45deg, #9ebaf36e, #eef3d298, #fc88847e);
+  color: rgb(5, 11, 49);
+  padding-block: 15px;
+  margin: 20px auto;
+  border-radius: 20px;
+  border: none;
+  box-shadow: rgba(133, 189, 215, 0.878) 0px 20px 10px -15px;
+  transition: all 0.2s ease-in-out;
+}
+
+/* تأثير عند تحريك مؤشر الفأرة فوق زر تسجيل الدخول */
+.form .login-button:hover {
+  transform: scale(1.03);
+  box-shadow: rgba(133, 189, 215, 0.878) 0px 23px 10px -20px;
+}
+
+/* تأثير عند الضغط على زر تسجيل الدخول */
+.form .login-button:active {
+  transform: scale(0.95);
+  box-shadow: rgba(133, 189, 215, 0.878) 0px 15px 10px -10px;
+}
+
+/* تنسيق قسم تسجيل الدخول عبر وسائل التواصل الاجتماعي */
+.social-account-container {
+  margin-top: 25px;
+}
+
+/* تنسيق عنوان قسم تسجيل الدخول عبر وسائل التواصل الاجتماعي */
+.social-account-container .title {
+  display: block;
+  text-align: center;
+  font-size: 10px;
+  color: rgb(170, 170, 170);
+}
+
+/* تنسيق أيقونات وسائل التواصل الاجتماعي */
+.social-account-container .social-accounts {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 5px;
+}
+
+/* تنسيق صور وسائل التواصل الاجتماعي */
+.soial-account-img {
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 20px;
+}
+
+.soial-account-img img {
+  border-radius: 100%;
+  height: 35px;
+}
+
+/* تنسيق نص اتفاقية المستخدم */
+.agreement {
+  display: block;
+  text-align: center;
+  margin-top: 15px;
+}
+
+/* تنسيق روابط اتفاقية المستخدم */
+.agreement a {
+  text-decoration: none;
+  color: #0099ff;
+  font-size: 9px;
+}

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+    <link rel="stylesheet" type="text/css" href="ann.css">
+    <title>إدارة الإعلانات</title>
+</head>
+<body>
+
+    <div class="container">
+        <div dir="rtl" class="heading">
+            <img height="150px" src="image/plus_icon.png" alt="">
+            <p>إضافةالإعلان</p>
+        </div>
+        <form dir="rtl" action="" class="form">
+            <div class="group-Input">
+                <input dir="rtl" required="" class="input" type="text" name="announcement-title" id="announcement-title" placeholder="عنوان الإعلان">
+                <input dir="rtl" required="" class="input" type="text" name="announcement-subject" id="announcement-subject" placeholder="المادة الدراسية">
+            </div>
+            <div class="group-Input">
+                <input dir="rtl" required="" class="input" type="text" name="announcement-details" id="announcement-details" placeholder="تفاصيل الإعلان">
+                <input dir="rtl" required="" class="input" type="date" name="announcement-date" id="announcement-date" placeholder="تاريخ الإعلان">
+            </div>
+            <div class="group-Input">
+                <input dir="rtl" required="" class="input" type="time" name="announcement-time" id="announcement-time" placeholder="وقت الإعلان">
+                <input dir="rtl" required="" class="input" type="text" name="announcement-term" id="announcement-term" placeholder="الفصل الدراسي">
+            </div>
+            <div class="group-Input">
+                <input dir="rtl" required="" class="input" type="tel" name="contact-phone" id="contact-phone" placeholder="رقم الهاتف للتواصل">
+                <input dir="rtl" required="" class="input" type="text" name="announcement-id" id="announcement-id" placeholder="رقم الإعلان">
+            </div>
+            <label for="announcement-file">رفع ملف مرفق :</label>
+            <input type="file" id="file" name="announcement-file" accept="file/*" >
+            <input class="login-button " type="submit" value="إضافة إعلان">
+            <button type="submit" class="login-button"  onclick="window.location.href='teacher.html';" >خروج</button>
+           
+
+        </form>
+    </div>
+   
+</body>
+</html>

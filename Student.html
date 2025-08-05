@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>الطالب</title>
+  <link rel="stylesheet" type="text/css" href="Student.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Doto:wght@100..900&family=Major+Mono+Display&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+Bhaijaan+2&display=swap" rel="stylesheet">
+</head>
+<body>
+
+
+<section class="section" dir="rtl">
+ <header dir="rtl"> 
+      <div class="logo">
+        <!-- قسم الشعار -->
+        <div class="name2" dir="ltr"><span class="letter-a">A</span><span class="letter-c">c</span><span class="letter-a1">a</span><span class="letter-d2">d</span><span class="letter-e">e</span><span class="letter-m1">m</span><span class="letter-y1">y</span></div>    
+        <div class="name">ARG</div>
+      </div>
+      
+      <div class="InputContainer"> 
+        <!-- حاوية الإدخال، تحتوي على مربع البحث -->
+        <input placeholder="بحث..." id="input" class="input" name="text" type="text" dir="rtl">
+        <!-- مربع إدخال نص للبحث، يبدأ من اليمين (dir="rtl") للغات مثل العربية -->
+      </div>
+
+     
+      
+  </header>
+
+ <div class="container">
+    <h2 class="title" dir="rtl" style="font-size: 30px;">HTML</h2>
+    <h2 class="title" dir="rtl"> قائمة الدروس :</h2>
+
+    <!-- إدخال مخفي لاختيار الكاردات -->
+    <input type="radio" id="card1" name="lesson" checked class="radio" >
+    <input type="radio" id="card2" name="lesson" class="radio">
+    <input type="radio" id="card3" name="lesson" class="radio">
+    <input type="radio" id="card4" name="lesson" class="radio">
+    <input type="radio" id="card5" name="lesson" class="radio">
+   <!-- العناوين للكاردات -->
+    <div class="lessons">
+        <label for="card1" class="card" onclick="document.getElementById('videoFrame').src='video/intro.mp4';">
+          <h3>درس رقم 1</h3>
+          <p>مقدمة إلى HTML</p>
+        </label>
+
+      <label for="card2" class="card" onclick="document.getElementById('videoFrame').src='video/h.mp4';">
+          <h3>درس رقم 2</h3>
+          <p>التعامل مع العناوين  &lt;h1&gt;...</p>
+      </label>
+
+      <label for="card3" class="card" onclick="document.getElementById('videoFrame').src='video/p.mp4';">
+          <h3>درس رقم 3</h3>
+          <p>التعامل مع النصوص  &lt;p&gt;</p>
+      </label>
+
+      <label for="card4" class="card" onclick="document.getElementById('videoFrame').src='video/image.mp4';">
+          <h3>درس رقم 4</h3>
+          <p>التعامل مع الصور  &lt;img&gt;</p>
+      </label>
+
+      <label for="card5" class="card" onclick="document.getElementById('videoFrame').src='video/link.mp4';">
+          <h3>درس رقم 5</h3>
+          <p>التعامل مع الروابط  &lt;a&gt;</p>
+      </label>
+    </div>
+  
+    <!-- آيفريم لعرض الفيديو -->
+    <div class="video-container" dir="rtl">
+
+      <!-- عرض المحتوى بناءً على الكارد المختار -->
+     <div class="lesson-info">
+      <div class="lesson-content" id="content1">
+          <h2>الدرس الأول</h2>
+          <h3>📌مقدمة إلى لغة HTML</h3>
+          <p>هل تريد تعلم كيفية إنشاء صفحات ويب بسهولة؟ في هذا الفيديو، ستتعرف على أساسيات لغة <strong>HTML</strong>، اللغة الأساسية المستخدمة في بناء مواقع الإنترنت. سنشرح مفهوم <strong>الوسوم (Tags)</strong>، وكيفية إنشاء العناوين، الفقرات، الصور، والروابط داخل صفحات الويب. لا تحتاج لأي خبرة سابقة، فقط شاهد الفيديو وابدأ رحلتك في عالم تطوير الويب! 🚀   </p>
+          <p>#HTML #تعلم_البرمجة #تصميم_المواقع</p>
+      </div>
+      <div class="lesson-content" id="content2">
+          <h2>الدرس الثاني</h2>
+          <h3>📌 التعامل مع العناوين &lt;h&gt;</h3>
+          <p>هل تريد معرفة كيفية تنظيم المحتوى داخل صفحات الويب؟ 🤔 في هذا الفيديو، سنتعرف على <strong>وسوم العناوين (Headings) في HTML</strong>، التي تُستخدم لتحديد العناوين الرئيسية والفرعية داخل الصفحات. ستتعلم الفرق بين &lt;h1&gt;إلى &lt;h6&gt; وكيفية استخدامها لتحسين هيكلة المحتوى وتحسين محركات البحث (SEO). لا تفوّت الفرصة وابدأ التعلم الآن! 🚀   </p>          
+          <p>#HTML #تعلم_البرمجة #تصميم_المواقع</p>
+        </div>
+      <div class="lesson-content" id="content3">
+          <h2>الدرس الثالث</h2>
+          <h3>📌 التعامل مع النصوص &lt;p&gt;</h3>
+          <p>هل تساءلت يومًا كيف يتم تنسيق النصوص داخل صفحات الويب؟ 📝 في هذا الفيديو، سنستكشف كيفية استخدام <strong>وسم الفقرة &lt;p&gt;</strong> في HTML، بالإضافة إلى بعض الوسوم الأخرى التي تساعد في تنسيق النصوص مثل &lt;b&gt; و &lt;i&gt; و &lt;u&gt;. ستتعلم كيفية كتابة نصوص واضحة ومنظمة بسهولة! لا تنسَ المتابعة وابدأ رحلتك في تطوير الويب الآن! 🚀  </p>
+          <p>#HTML #تعلم_البرمجة #تصميم_المواقع</p>
+        </div>
+      <div class="lesson-content" id="content4">
+          <h2>الدرس الرابع</h2>
+          <h3>📌 التعامل مع الصور &lt;img&gt;</h3>
+          <p>كيف يمكنك إضافة الصور إلى موقعك الإلكتروني؟ 🖼️ في هذا الفيديو، سنتعرف على <strong>وسم &lt;img&gt;</strong> في HTML، وكيفية استخدامه لعرض الصور داخل صفحات الويب. سنتعلم كيفية تحديد مصدر الصورة، ضبط حجمها، وإضافة نص بديل (alt) لتحسين الوصولية. استعد لإضافة لمسات إبداعية إلى موقعك! 🚀  </p>
+          <p>#HTML #تعلم_البرمجة #تصميم_المواقع</p>
+        </div>
+      <div class="lesson-content" id="content5">
+          <h2>الدرس الخامس</h2>
+          <h3>📌 التعامل مع الروابط &lt;a&gt;</h3>
+          <p>كيف يمكنك التنقل بين الصفحات في موقعك الإلكتروني؟ 🔗 في هذا الفيديو، سنتعرف على <strong>وسم &lt;a&gt;</strong> في HTML، الذي يُستخدم لإنشاء الروابط بين الصفحات والمواقع المختلفة. ستتعلم كيفية إنشاء روابط داخلية وخارجية، وإضافة روابط تفتح في نوافذ جديدة. لا تفوّت فرصة تعلم أحد أهم عناصر الويب! 🚀  </p>
+          <p>#HTML #تعلم_البرمجة #تصميم_المواقع</p>
+        </div>
+     </div>
+
+
+     <iframe id="videoFrame" frameborder="0" 
+        src="video/intro.mp4" allow="encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+     </iframe>
+
+    </div>
+
+    <h2 class="finish">بعد الانتهاء من الدراسة قد تحتاج: </h2>
+
+    <div class="mid" dir="rtl">
+      <input class="quiz" type="submit" value="اختبار سريع"  onclick="window.location.href='quiz.html';">
+     
+
+      <div class="resources">
+        <form action="#" target="_blank">
+          <label for="resource-select">مصادر اخرى</label>
+          <select name="resource" id="resource-select" onchange="this.form.action=this.value; this.form.submit();">
+              <option value="#">اختر المصدر</option>
+              <option value="https://drive.google.com/file/d/1o56IXiZiWsfyhvRzSnsWmtjJniyIzZHW/view?usp=sharing">ملف PDF</option>
+              <option value="https://www.youtube.com/c/OsamaElzero">قناة يوتيوب</option>
+          </select>
+      </form>
+    </div>
+
+    </div>
+
+    <div class="comment-section">
+      <h3 class="section-title">إضافة تعليق</h3>
+      <form class="comment-form" action="#" method="post">
+          <input type="text" name="name" class="input-field" placeholder="اسمك" required>
+          <textarea name="comment" rows="4" class="input-field" placeholder="اكتب تعليقك هنا..." required></textarea>
+          <button type="submit" class="submit-btn">إرسال</button>
+      </form>
+
+      <div class="comments">
+          <h3 class="section-title">التعليقات:</h3>
+          <div class="comment-box">
+              <span class="comment-author">أحمد:</span> درس رائع جدًا! شكرًا لكم.
+          </div>
+          <div class="comment-box">
+              <span class="comment-author">سارة:</span> الشرح كان واضح وسهل الفهم. متى الدرس القادم؟
+          </div>
+      </div>
+  </div>
+
+  </div>   <!-- container-->
+
+ <footer>
+      <p>ARG Academy is optimized for learning and training. Examples might be simplified to improve reading and learning
+       Tutorials, references, and examples are constantly reviewed to avoid errors, but we cannot warrant full correctness
+       of all content.<br> While using ARG Academy, you agree to have read and accepted our <a href="#">terms of use</a>, 
+       <a href="#">cookie</a> and <a href="#">privacy policy</a>.
+      </p>
+      <p>
+       Copyright 2025 by ARG Academy<br> All Rights Reserved.
+      </p>
+  </footer>
+    
+</section>
+
+
+<div class="sideBar" dir="rtl">
+
+  <div class="user-info" dir="rtl">
+    <img src="image/student.png" alt="User Image" class="user-image">
+    <h2 class="username">Amer moon</h2>
+  </div>
+
+  <ul class="sideBar-content">
+      <li><a href="index.html" class="l"><i class="fa-solid fa-house icons" style="padding-right: 1px;"></i><span class="text">الصفحة الرئيسية</span></a></li>
+      <li><a href="#" class="l"><i class="fa-brands fa-html5 icons"></i><span class="text">HTML</span></a></li>
+      <li><a href="#" class="l"><i class="fa-brands fa-css3-alt icons"></i><span class="text">CSS</span></a></li>
+      <li><a href="#" class="l"><i class="fa-brands fa-js icons"></i><span class="text">JAVAScript  </span></a></li>
+      <li><a href="Announcement.html" class="l"><i class="fa-solid fa-bullhorn icons"></i><span class="text">اعلانات الاستاذ</span></a></li>
+      <li><a href="help.html" class="l"><i class="fa-solid fa-question-circle icons"></i><span class="text">المساعدة</span> </a>
+      </li>
+      <li><a href="#" class="l"><i class="fa-solid fa-right-from-bracket icons"></i><span class="text">تسجيل الخروج</span></a></li>
+  </ul>
+
+</div> 
+  
+ 
+</body>
+</html>

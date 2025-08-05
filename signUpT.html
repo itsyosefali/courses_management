@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="signUpT.css">
+   
+    <title>انشاء حساب معلم</title>
+</head>
+<body>
+
+  
+    <div class="container">
+     
+        <div dir="rtl" class="heading"> <img  height="120px" src="image/signUp1.png" alt=""><p>انشاء حساب</p></div>
+        <form dir="rtl" action="auth/register_teacher.php" method="POST" enctype="multipart/form-data" class="form">
+
+       <div class="group-Input">
+          <input dir="rtl"  required="" class="input" type="text" name="full-name" id="full-name" placeholder="الاسم كامل">
+          <input dir="rtl"  required="" class="input" type="text" name="user-name" id="user-name" placeholder="اسم المستخدم">
+   
+        </div>
+          <div class="group-Input">
+          <input dir="rtl" required="" class="input" type="email" name="email" id="E-mail" placeholder="البريد الاكتروني">
+          <input dir="rtl" required="" class="input" type="password" name="password" id="password" placeholder="كلمة المرور">
+        </div>
+        
+        
+        
+        <div class="group-Input">
+          <input dir="rtl" required="" class="input" type="password" name="confirm-password" id="confirm-password" placeholder="تأكيد كلمة المرور">
+          <input dir="rtl" required="" class="input" type="text" name="subject-specialization" id="subject" placeholder="التخصص الدراسي">
+        </div>
+        
+        
+          <div class="group-Input">
+            <input dir="rtl" required="" class="input" type="tel" name="phone" id="phone" placeholder="رقم الهاتف">
+            <input dir="rtl" required="" class="input" type="text" name="ID" id="id" placeholder="رقم الهوية">
+      
+          </div>
+         
+          <label for="profile_picture">الشهادة الجامعية :</label>
+          <input type="file" id="file" name="profile_picture" accept="image/*" >
+        
+          <input class="signup-button" type="submit" value="انشاء حساب">
+          
+
+          
+        </form>
+       
+
+      </div>
+</body>
+</html>

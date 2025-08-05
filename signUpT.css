@@ -1,0 +1,187 @@
+/* استدعاء الخط المخصص NotoKufiArabic-Light */
+@font-face {
+  font-family: NotoKufiArabic-Light; /* تعريف اسم الخط */
+  src: url(fonts/NotoKufiArabic-Light.ttf); /* تحديد مسار الخط */
+}
+
+/* إعادة ضبط القيم الافتراضية لجميع العناصر */
+* {
+  font-family: NotoKufiArabic-Light; /* استخدام الخط المخصص لجميع العناصر */
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; /* التأكد من أن المسافات الداخلية والحدود تُحسب ضمن أبعاد العناصر */
+}
+
+/* تنسيق الجسم */
+body {
+  background-image: linear-gradient(-45deg, #9EBAF3, #EEF3D2, #fc8884c0); /* خلفية بتدرج لوني */
+  background-attachment: fixed; /* تثبيت الخلفية أثناء التمرير */
+  min-height: 100vh; /* التأكد من أن ارتفاع الجسم لا يقل عن ارتفاع النافذة */
+  display: grid; /* استخدام grid layout لتوزيع العناصر */
+  grid-template-columns: 1fr auto 1fr; /* تقسيم الصفحة إلى ثلاثة أعمدة */
+  gap: 10px; /* مسافة بين الأعمدة */
+  grid-template-areas:"navBar container none"; /* تخصيص أماكن العناصر */
+  background-color: rgba(132, 236, 236, 0.753); /* تحديد لون الخلفية مع شفافية */
+  font-family: Arial, sans-serif; /* استخدام الخط الافتراضي في حال لم يتوفر الخط المخصص */
+  backdrop-filter: blur(10px); /* إضافة تأثير التمويه على الخلفية */
+}
+
+/* تنسيق الحاوية */
+.container {
+  grid-area: container; /* تخصيص مكان الحاوية في التخطيط */
+  background: linear-gradient(0deg, rgb(255, 255, 255, -2) 0%, rgb(244, 247, 251, -2)); /* تأثير التدرج في الخلفية */
+  border-radius: 40px; /* زوايا دائرية للحاوية */
+  padding: 25px 35px; /* مسافات داخلية */
+  border: 3px solid #ffffffa2; /* تحديد حدود الحاوية */
+  margin: 20px; /* مسافة حول الحاوية */
+  box-shadow: 5px 5px 5px 2px rgba(125, 119, 119, 0.43); /* إضافة ظل خفيف للحاوية */
+  height: 580px;
+}
+
+/* تنسيق العنوان داخل الحاوية */
+.heading {
+  display: flex; /* استخدام Flexbox لتوزيع العناصر داخل العنوان */
+  justify-content: space-evenly; /* توزيع النصوص بشكل متساوٍ */
+  font-weight: 900; /* جعل النص ثقيل */
+  font-size: 30px; /* تحديد حجم الخط */
+  color: #160851; /* تحديد لون النص */
+  margin-top: -20px;
+}
+
+/* تنسيق الفقرة داخل العنوان */
+.heading p {
+  font-size: 40px; /* تكبير حجم الخط */
+  padding-top: 30px; /* إضافة مسافة فوق الفقرة */
+}
+
+/* تنسيق النموذج داخل الحاوية */
+.form {
+  margin-top: 10px; /* إضافة مسافة فوق النموذج */
+}
+
+/* تنسيق حقل الإدخال */
+.form .input {
+  max-width: 260px; /* تحديد الحد الأقصى للعرض */
+  background: white; /* خلفية بيضاء لحقل الإدخال */
+  border: none; /* إزالة الحدود */
+  padding: 15px 20px; /* إضافة مسافة داخلية */
+  border-radius: 20px; /* زوايا دائرية لحقل الإدخال */
+  margin: 15px; /* إضافة مسافة حول الحقل */
+  box-shadow: #cff0ff 0px 10px 10px -5px; /* إضافة ظل خفيف للحقل */
+  border-inline: 2px solid transparent; /* تظليل الحافة بدون حدود مرئية */
+  height: 40px;
+}
+
+/* تنسيق النص داخل الحقل (مؤشر النص) */
+.form .input::-moz-placeholder {
+  color: rgb(170, 170, 170); /* تغيير لون النص في حالة عدم وجود مدخلات */
+}
+
+/* تنسيق النص داخل الحقل (مؤشر النص) */
+.form .input::placeholder {
+  color: rgb(170, 170, 170); /* تغيير لون النص في حالة عدم وجود مدخلات */
+}
+
+/* تأثير عند تركيز المستخدم على الحقل */
+.form .input:focus {
+  outline: none; /* إزالة الحدود عند التركيز */
+  border-inline: 2px solid #05434f; /* تغيير لون الحافة عند التركيز */
+}
+
+/* تنسيق زر تسجيل الدخول */
+.form .signup-button {
+  display: block; /* جعل الزر يظهر ككتلة */
+  width: 100%; /* جعل الزر يعرض بشكل كامل */
+  font-weight: bold; /* جعل النص داخل الزر ثقيل */
+  background: linear-gradient(45deg, #9ebaf36e, #eef3d298, #fc88847e); /* تدرج لوني للزر */
+  color: rgb(5, 11, 49); /* تغيير لون النص داخل الزر */
+  padding-block: 10px; /* إضافة مسافة رأسية داخل الزر */
+  margin: 5px auto; /* إضافة مسافة حول الزر */
+  border-radius: 20px; /* زوايا دائرية للزر */
+  border: none; /* إزالة الحدود */
+  box-shadow: rgba(133, 189, 215, 0.8784313725) 0px 20px 10px -15px; /* إضافة ظل للزر */
+  transition: all 0.2s ease-in-out; /* إضافة تأثيرات انتقائية عند التفاعل مع الزر */
+height: 60px;
+}
+
+/* تأثير عند تحريك مؤشر الفأرة فوق الزر */
+.form .signup-button:hover {
+  transform: scale(1.03); /* تكبير الزر عند التمرير */
+  box-shadow: rgba(133, 189, 215, 0.8784313725) 0px 23px 10px -20px; /* تغيير تأثير الظل */
+}
+
+/* تأثير عند الضغط على الزر */
+.form .signup-button:active {
+  transform: scale(0.95); /* تصغير الزر عند الضغط عليه */
+  box-shadow: rgba(133, 189, 215, 0.8784313725) 0px 15px 10px -10px; /* تغيير تأثير الظل عند الضغط */
+}
+
+/* تنسيق حقل تحميل الملف */
+#file {
+  margin: 15px; /* إضافة مسافة حول الحقل */
+  border: 1px solid #ffffffa2; /* إضافة حدود خفيفة حول الحقل */
+  background-color: #ffffff; /* خلفية بيضاء */
+  box-shadow: #cff0ff 0px 10px 10px -5px; /* إضافة ظل خفيف للحقل */
+  border-radius: 2rem; /* زوايا دائرية للحقل */
+  padding: 10px; /* إضافة مسافة داخل الحقل */
+height:50px;
+}
+
+/* تنسيق زر تحميل الملف */
+#file::-webkit-file-upload-button {
+  border: none; /* إزالة الحدود */
+  border-radius: 2rem; /* زوايا دائرية للزر */
+  background: #d2f1f3e1; /* خلفية الزر */
+  margin-right: 10px; /* إضافة مسافة للجانب الأيمن */
+  margin-left: 10px; /* إضافة مسافة للجانب الأيسر */
+}
+
+/* تنسيق التسمية */
+label {
+  margin-right: 20px; /* إضافة مسافة للجانب الأيمن */
+}
+
+/* تخصيص التنسيق في الشاشات الصغيرة (تحت 750px) */
+@media (max-width: 750px) {
+  .container {
+    max-width: 500px; /* تحديد الحد الأقصى للعرض */
+    flex-direction: column; /* جعل الحاوية عمودية */
+    height: 100%;
+  }
+
+  .form {
+    width: 100%; /* جعل النموذج يعرض بشكل كامل */
+    display: flex; /* استخدام Flexbox لتوزيع العناصر داخل النموذج */
+    flex-direction: column; /* جعل العناصر داخل النموذج عمودية */
+    align-items: center; /* محاذاة العناصر في المركز */
+  }
+
+  .input {
+    width: 90%; /* جعل الحقل يستخدم 90% من العرض */
+    max-width: 400px; /* تحديد الحد الأقصى للعرض */
+  }
+}
+
+/* إضافة تأثير التحريك على الصور */
+img {
+  animation: img 4s ease infinite both; /* تعيين تأثير الحركة للصور */
+}
+
+/* تعريف الحركة (التحريك للأعلى والأسفل) */
+@keyframes img {
+  0% {
+    transform: translateY(0px); /* وضع الصورة في مكانها الأصلي */
+  }
+
+  30% {
+    transform: translateY(10px); /* رفع الصورة قليلاً */
+  }
+
+  60% {
+    transform: translateY(-10px); /* تحريك الصورة للأسفل قليلاً */
+  }
+
+  100% {
+    transform: translateY(0px); /* إعادة الصورة إلى مكانها الأصلي */
+  }
+}

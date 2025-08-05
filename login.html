@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <link rel="stylesheet" type="text/css" href="Login.css">
+   
+    <title>تسجيل الدخول</title>
+</head>
+<body>
+
+  
+    <div class="container">
+     
+        <div class="heading"> <img  height="100px" src="image/person2.png" alt=""><p>تسجيل الدخول  </p></div>
+        <form action="auth/login.php" method="POST" class="form">
+          <input dir="rtl" required="" class="input" type="email" name="email" id="email" placeholder="البريد الاكتروني">
+          <input dir="rtl" required="" class="input" type="password" name="password" id="password" placeholder="كلمة المرور">
+          <span dir="rtl" class="forgot-password"> <a href="#">هل نسيت كلمة المرور؟    </a></span>
+          <input class="login-button" type="submit" value="تسجيل الدخول">
+          
+        </form>
+        <div class="social-account-container">
+            <span class="title">تسجيل بواسطة</span>
+           <div class="soial-account-img"><a href="#"><img height="30px" src="image/google2.png" alt=""></a><a href="#"><img  height="30px" src="image/apple2.png" alt=""> </a></div>
+          </div>
+          <span dir="rtl" class="agreement"><a href="#">تعرف على اتفاقية ترخيص المستخدم</a></span>
+      </div>
+</body>
+</html>

@@ -1,0 +1,141 @@
+@font-face {
+    font-family: 'NotoKufiArabic-Light';
+    src: url('fonts/NotoKufiArabic-Light.ttf');
+}
+
+@font-face {
+    font-family: 'BalooBhaijaan2-Bold';
+    src: url('fonts/BalooBhaijaan2-Bold.ttf') format('truetype');
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-image: linear-gradient(-45deg, #9EBAF3, #EEF3D2, #fc8884c0);
+    background-attachment: fixed;
+    max-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 3.5fr 1fr;
+    gap: 8px;
+
+    grid-template-areas: "none container sideBar";
+    font-family: 'NotoKufiArabic-Light', sans-serif;
+    backdrop-filter: blur(10px);
+}
+h2{
+  font-weight: bold;
+  font-size: 50px; /* 24px → 1.5rem */
+  color: #0b2b6d;
+  margin:10px;
+  text-align: center;
+  font-family: NotoKufiArabic-Light;
+}
+.container {
+    grid-area: container;
+    background: rgba(255, 255, 255, 0.71);
+    border-radius: 40px;
+    padding: 25px 25px;
+    border: 3px solid #ffffffa2;
+    margin: 10px;
+    box-shadow: 5px 5px 5px 2px rgba(125, 119, 119, 0.43);
+    display: grid;
+    grid-template-rows: 0.2fr 1.85fr 0.2fr ;
+    grid-template-areas: "none"
+    " main"
+    "none2"
+}
+
+.main {
+  grid-area: main;
+    display: grid;
+    grid-template-rows: auto auto auto;
+    grid-template-areas: "lable"
+    "content"
+    "blank";
+    gap: 8px;
+    justify-content: center;
+    border-bottom: 2px solid #ddd;
+}
+
+.label { 
+
+    font-size: 30px;
+    font-weight: bold;
+    color: #160851;
+}
+
+.content {  grid-area: content;
+    font-size: 18px;
+    line-height: 1.6;
+    padding: 10px;
+    border-radius: 5px;
+    margin: 0;
+}
+
+.blank { grid-area: blank;
+    height: 5px;
+}
+
+.features {
+    list-style-type: none;
+    padding: 0;
+}
+
+.features li {
+    background: #e7e7e779;
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.highlight {
+    color: #e74c3c;
+    font-weight: bold;
+}
+
+.cta {
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    color: #2c3e50;
+}
+
+
+h3{
+ 
+  font-weight: bold;
+  font-size: 50px; /* 24px → 1.5rem */
+  color: #0b2b6d;
+  margin:10px;
+  text-align: center;
+  font-family:NotoKufiArabic-Light;
+
+}
+  
+button {
+    cursor: pointer;
+    padding: 12px;
+    margin: 15px;
+    margin-right: 5%;
+    width: 90%;
+    background-image: linear-gradient(-45deg, #9EBAF3, #EEF3D2, #fc8884c0);
+    border-radius: 15rem;
+    border: none;
+    outline: none;
+    color: #0b2b6d;
+    font-size: 20px;
+    transition: all 0.2s ease-in-out; /* إضافة تأثيرات انتقائية عند التفاعل مع الزر */}
+
+button:hover {
+    transform: scale(1.03); /* تكبير الزر عند التمرير */
+    box-shadow: rgba(133, 189, 215, 0.8784313725) 0px 23px 10px -20px; /* تغيير تأثير الظل */}
+
+button:active{
+    transform: scale(0.95); /* تصغير الزر عند الضغط عليه */
+    box-shadow: rgba(133, 189, 215, 0.8784313725) 0px 15px 10px -10px; /* تغيير تأثير الظل عند الضغط */
+}

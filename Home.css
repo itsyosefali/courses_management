@@ -1,0 +1,431 @@
+@font-face {
+    font-family: NotoKufiArabic-Light; /* تعريف الخط الأول */
+    src: url(fonts/NotoKufiArabic-Light.ttf);
+}
+
+@font-face {
+    font-family: BalooBhaijaan2-Bold; /* تعريف الخط الثاني */
+    src: url(fonts/BalooBhaijaan2-Bold.ttf);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* يضمن أن الحواف والحشوات تحسب ضمن الأبعاد الفعلية للعنصر */
+}
+
+body {
+    background-image: linear-gradient(-45deg, #9EBAF3, #EEF3D2, #fc8884c0); /* تدرج لوني للخلفية */
+    background-attachment: fixed; /* يثبت الخلفية عند التمرير */
+    min-height: 100vh; /* يضمن أن الصفحة تمتد على كامل ارتفاع الشاشة */
+    display: grid;
+    grid-template-columns: 1fr; /* شبكة بعمود واحد */
+    grid-template-rows: auto 1fr auto; /* تحديد ارتفاع كل جزء من الصفحة */
+    gap: 10px;
+    grid-template-areas:
+        "navBar"  /* شريط التنقل */
+        "container" /* المحتوى الرئيسي */
+        "footer"; /* التذييل */
+    background-color: rgba(132, 236, 236, 0.753); /* لون خلفية إضافي */
+    backdrop-filter: blur(10px); /* تأثير تمويه الخلفية */
+}
+
+header {
+    grid-area: navBar; /* تحديد موقع الهيدر في الشبكة */
+    margin: 20px;
+    display: flex;
+    justify-content: space-evenly; /* توزيع العناصر بالتساوي */
+    align-items: center; /* محاذاة العناصر عموديًا في الوسط */
+    background: rgba(255, 255, 255, 0.284); /* لون شفاف للخلفية */
+    color: #0b2b6d; /* لون النص */
+    padding: 10px 20px; /* الحواف الداخلية */
+    font-size: 22px;
+    height: 70px; /* ارتفاع الهيدر */
+    border-radius: 2em; /* زوايا مستديرة */
+}
+
+.logo {
+    display: flex;
+    align-items: center; /* محاذاة العناصر داخل الشعار */
+}
+
+.name {
+    font-family: "Major Mono Display", monospace; /* خط مميز */
+    font-weight: 700; /* زيادة سمك الخط */
+    font-size: 50px;
+    color: #0b2b6d;
+    margin: 20px;
+}
+
+.name2 {
+    font-family: BalooBhaijaan2-Bold; /* خط مخصص */
+    font-weight: bold;
+    font-size: 24px;
+    color: #0b2b6d;
+    margin-top: 10px; /* تحسين المحاذاة */
+}
+
+.links {
+    font-family: NotoKufiArabic-Light; /* تحديد الخط */
+    display: flex;
+    gap: 20px; /* مسافة بين الروابط */
+    margin-right: 30px;
+}
+
+.link {
+    text-decoration: none; /* إزالة التسطير عن الروابط */
+    font-weight: bold;
+    font-size: 18px;
+    padding: 0.5rem;
+    color: inherit; /* استخدام لون النص الأساسي */
+}
+
+.link:hover {
+    background: #0b2b6d; /* تغيير لون الخلفية عند التحويم */
+    color: aliceblue; /* تغيير لون النص */
+    border-radius: 5em; /* جعل الحواف مستديرة */
+    transition: 0.3s ease-in; /* تأثير الانتقال */
+}
+
+.container {
+    font-family: NotoKufiArabic-Light; /* تحديد الخط */
+    grid-area: container; /* تحديد مكان المحتوى في الشبكة */
+    padding: 20px;
+}
+
+
+
+/* تصميم مربع البحث */
+.InputContainer {
+    
+   font-family:NotoKufiArabic-Light;
+    width: 210px; /* عرض الحاوية */
+    height: 50px; /* ارتفاع الحاوية */
+    display: flex;
+    align-items: center; /* محاذاة المحتوى عموديًا */
+    justify-content: center; /* محاذاة المحتوى أفقيًا */
+    background: linear-gradient(to bottom, #9ebaf397, #eef3d2ae, #fc88847e); 
+    /* تدرج لوني للخلفية */
+    border-radius: 30px; /* جعل الزوايا دائرية */
+    overflow: hidden; /* منع تجاوز المحتوى للحواف */
+    cursor: pointer; /* تغيير المؤشر عند التمرير */
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.075); /* إضافة ظل خفيف للحاوية */
+}
+
+/* تصميم حقل الإدخال */
+.input {
+    
+   font-family:NotoKufiArabic-Light;
+    width: 200px; /* عرض الحقل */
+    height: 40px; /* ارتفاع الحقل */
+    border: none; /* إزالة الحدود */
+    outline: none; /* إزالة التأثير عند التحديد */
+    caret-color: rgba(4, 1, 15, 0.783); /* لون المؤشر */
+    background-color: rgb(255, 255, 255); /* لون الخلفية */
+    border-radius: 30px; /* جعل الزوايا دائرية */
+    padding-right: 20px; /* مسافة داخلية من اليمين لمنع التصاق النص */
+    letter-spacing: 0.8px; /* تباعد الحروف */
+    color: rgb(3, 6, 34); /* لون النص */
+    font-size: 13.4px; /* حجم الخط */
+}
+
+/* إخفاء مربع الاختيار المستخدم في القائمة */
+#menu-toggle {
+    display: none;
+}
+
+/* تصميم زر ☰ لإظهار القائمة */
+.menu-icon {
+    
+    display: none; /* إخفاؤه بشكل افتراضي */
+    font-size: 20px; /* حجم الرمز */
+    cursor: pointer; /* تغيير شكل المؤشر عند التمرير */
+    color: rgb(14, 2, 25); /* لون الأيقونة */
+    padding: 10px; /* مسافة داخلية */
+    border-radius: 5px; /* جعل الزوايا مستديرة */
+}
+
+
+.title {
+    font-family: NotoKufiArabic-Light; /* تحديد الخط المستخدم */
+    display: flex;
+    justify-content: space-around; /* توزيع النص بالتساوي */
+    margin: 40px;
+    font-weight: bold;
+    font-size: 50px;
+    color: #160851; /* لون العنوان */
+}
+.arabic-title{
+  margin-top: 15px;
+}
+.book{
+    margin-top:60px ;
+}
+.cards {
+    font-family: NotoKufiArabic-Light; /* تحديد الخط */
+    margin: 6%; /* إضافة هامش حول العنصر */
+    display: flex;
+    justify-content: space-around; /* توزيع العناصر بالتساوي */
+    grid-area: cards; /* تعيين موقع العنصر في الشبكة */
+    position: relative; /* تحديد الموقع النسبي */
+    align-items: center; /* محاذاة العناصر في المنتصف عموديًا */
+    padding: 25px; /* إضافة تباعد داخلي */
+    gap: 50px; /* مسافة بين العناصر */
+
+}
+
+/* أنماط البطاقة العامة */
+.cardHTML, .cardCSS, .cardJS {
+    display: flex;
+    flex-direction: column; /* ترتيب المحتويات عموديًا */
+    justify-content: center; /* محاذاة المحتوى في المنتصف */
+    align-items: center;
+    box-sizing: border-box; /* التأكد من أن الحواف والحشوات ضمن الأبعاد المحددة */
+    border-radius: 2em; /* زوايا دائرية */
+    height: 350px; /* تحديد ارتفاع البطاقة */
+    width: 350px; /* تحديد عرض البطاقة */
+    box-shadow: 5px 5px 5px 2px rgba(125, 119, 119, 0.398); /* إضافة ظل للبطاقة */
+    border: 3px solid rgba(255, 249, 249, 0.3); /* تحديد حدود شفافة */
+    background: #eef3d229;
+    border:20px solid rgba(255, 249, 249, 0.262); /* تحديد حدود شفافة */
+}
+
+/* تنسيق النصوص والعناوين داخل البطاقات */
+.p-html, .p-js, .p-css, h1 {
+    font-size: 18px;
+    font-weight: bold;
+    padding: 18px;
+    display: none; /* إخفاء النصوص افتراضيًا */
+    word-spacing: 2px;
+    text-align: center; /* محاذاة النص */
+    color: #2c3c71; /* لون النص */
+}
+
+h1 {
+    
+    font-size: 20px;
+    color: #160851;
+}
+.discount {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: #ff5c5c;
+  color: white;
+  padding: 6px 14px;
+  font-size: 14px;
+  font-family: NotoKufiArabic-Light;
+  border-radius: 20px;
+  z-index: 1;
+}
+
+/* تأكد أن البطاقات position: relative; */
+.cardHTML, .cardCSS, .cardJS {
+  position: relative;
+}
+
+
+/* تأثير التحويم على بطاقة CSS */
+.cardCSS:hover {
+    background-color: #f2f7d3d3; /* تغيير لون الخلفية عند التحويم */
+    transition: 0.5s linear; /* تأثير انتقالي سلس */
+    transform: scale(1.1); /* تكبير البطاقة */
+    
+    .p-css, h1 {
+        display: flex; /* إظهار النصوص داخل البطاقة */
+    }
+    
+    .css-logo {
+        display: none; /* إخفاء الشعار */
+    }
+}
+
+/* تأثير التحويم على بطاقة HTML */
+.cardHTML:hover {
+    background-color: #f2f7d3d3;
+    transition: 0.5s linear;
+    transform: scale(1.1);  
+
+    .html-logo {
+        display: none; /* إخفاء الشعار */
+    }
+
+    .p-html, h1 {
+        display: flex; /* إظهار النصوص */
+    }
+}
+
+/* تأثير التحويم على بطاقة JavaScript */
+.cardJS:hover {
+    background-color: #f2f7d3c2;
+    transition: 0.5s linear;
+    transform: scale(1.1);
+    
+    .js-logo {
+        display: none; /* إخفاء الشعار */
+    }
+
+    .p-js, h1 {
+        display: flex; /* إظهار النصوص */
+    }
+}
+
+/* تحويل التصميم إلى قائمة جانبية عند تصغير الشاشة */
+@media (max-width: 950px) {
+    .title {
+        display: flex;
+        flex-direction: column; /* ترتيب العنوان بشكل عمودي */
+    }
+
+    .cards {
+        display: flex;
+        flex-direction: column; /* ترتيب البطاقات بشكل عمودي */
+        position: static; /* إزالة التحديد النسبي للموقع */
+    }
+}
+
+/*=========================================================================*/
+@media (max-width: 1350px) {
+    .menu-icon {
+        display: block; /* إظهار زر القائمة */
+    }
+
+    .links {
+        display: none; /* إخفاء القائمة في الوضع العادي */
+        flex-direction: column; /* ترتيب العناصر عموديًا */
+        position: absolute; /* تحديد موقعها بشكل مستقل */
+        top: 70px; /* تحديد موضعها أسفل الشريط العلوي */
+        background: #fffcfc; /* لون الخلفية */
+        width: 200px; /* عرض القائمة */
+        padding: 10px; /* مسافة داخلية */
+        border-radius: 5px; /* جعل الزوايا مستديرة */
+       
+    }
+
+    /* تصميم الروابط داخل القائمة */
+    .links a {
+        display: block; /* جعل الروابط في أسطر منفصلة */
+        padding: 10px; /* مسافة داخلية */
+        color: rgb(13, 6, 51); /* لون النص */
+        text-decoration: none; /* إزالة التسطير */
+        border-bottom: 1px solid #160851; /* إضافة خط تحت كل عنصر */
+    }
+    .name2{
+        font-size: 18px;
+    }  
+}
+
+/*=========================================================================*/
+
+/* عند تحديد الـ checkbox، تظهر القائمة */
+#menu-toggle:checked ~ .links {
+    display: flex; /* إظهار القائمة */
+}
+.book {
+    animation: book 4s ease infinite both; /* تطبيق حركة التحريك (animation) على العنصر */
+}
+
+/* تعريف الحركة باسم "book" */
+@keyframes book {
+    0% {
+        transform: translateY(0px); /* بداية الحركة: يبقى العنصر في مكانه */
+    }
+    
+    30% {
+        transform: translateY(10px); /* تحريك العنصر إلى الأسفل بمقدار 10 بكسل */
+    }
+
+    60% {
+        transform: translateY(-10px); /* تحريك العنصر إلى الأعلى بمقدار 10 بكسل */
+    }
+
+    100% {
+        transform: translateY(0px); /* إعادة العنصر إلى موضعه الأصلي */
+    }
+}
+
+
+
+
+/* تحديد تأثير التحريك لكل حرف داخل العنصر الأب .name2 */
+.name2 span {
+    display: inline-block; /* جعل كل حرف عنصرًا منفصلًا ليسهل تحريكه */
+    opacity: 0; /* يبدأ الحرف غير مرئي */
+    transform: translateY(20px); /* تحريك الحرف لأسفل في البداية */
+    animation: fadeBounce 3s ease-in forwards; /* تطبيق التحريك */
+}
+
+/* تعريف حركة fadeBounce */
+@keyframes fadeBounce {
+    0% {
+        opacity: 0; /* الحرف غير مرئي */
+        transform: translateY(20px); /* بداية التحريك من الأسفل */
+    }
+    50% {
+        opacity: 1; /* يظهر الحرف تدريجيًا */
+        transform: translateY(-4px); /* يتحرك للأعلى قليلاً */
+    }
+    100% {
+        transform: translateY(0); /* يعود إلى موضعه الطبيعي */
+    }
+}
+
+/* تأخير عرض كل حرف لجعل الحروف تظهر بشكل متتابع */
+/* nth-child(n) تعني تحديد العنصر بناءً على ترتيبه داخل العنصر الأب */
+.name2 span:nth-child(1) { 
+    animation-delay: 0.1s; /* تأخير بداية التحريك للحرف الأول */
+    animation-iteration-count: infinite; /* تكرار التحريك بلا نهاية */
+}
+.name2 span:nth-child(2) { 
+    animation-delay: 0.2s; /* تأخير بداية التحريك للحرف الثاني */
+    animation-iteration-count: infinite;
+}
+.name2 span:nth-child(3) { 
+    animation-delay: 0.3s; /* تأخير بداية التحريك للحرف الثالث */
+    animation-iteration-count: infinite;
+}
+.name2 span:nth-child(4) { 
+    animation-delay: 0.4s; /* تأخير بداية التحريك للحرف الرابع */
+    animation-iteration-count: infinite;
+}
+.name2 span:nth-child(5) { 
+    animation-delay: 0.5s; /* تأخير بداية التحريك للحرف الخامس */
+    animation-iteration-count: infinite;
+}
+.name2 span:nth-child(6) { 
+    animation-delay: 0.6s; /* تأخير بداية التحريك للحرف السادس */
+    animation-iteration-count: infinite;
+}
+.name2 span:nth-child(7) { 
+    animation-delay: 0.7s; /* تأخير بداية التحريك للحرف السابع */
+    animation-iteration-count: infinite;
+}
+
+
+
+
+  
+.footer {
+    grid-area: footer;
+    font-family:NotoKufiArabic-Light;
+    background: rgba(255, 255, 255, 0.284); /* خلفية شفافة */
+    color: #0b2b6d; 
+    padding: 20px; /* تباعد داخلي */
+    text-align: center; /* توسيط النص */
+    font-size: 20px; /* حجم الخط */
+    border-radius: 2em; /* زوايا مدورة */
+    margin-top: 20px; /* تباعد من الأعلى */
+  }
+  
+  .footer p {
+    margin: 10px 0;
+  }
+  
+  .footer a {
+    color: #0b2b6d; 
+    text-decoration: none; 
+  }
+  
+  .footer a:hover {
+    text-decoration: underline; 
+  }
