@@ -31,10 +31,10 @@ try {
     $students = $stmt->fetchAll();
     
     $stmt = $pdo->prepare("
-        SELECT a.*, c.title as course_title 
+        SELECT a.*, u.full_name as author_name
         FROM announcements a 
-        LEFT JOIN courses c ON a.course_id = c.id 
-        WHERE a.teacher_id = ? 
+        LEFT JOIN users u ON a.author_id = u.id 
+        WHERE a.author_id = ? 
         ORDER BY a.created_at DESC 
         LIMIT 3
     ");

@@ -29,11 +29,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
         if (empty($errors)) {
             try {
                 $stmt = $pdo->prepare("
-                    INSERT INTO announcements (title, content, course_id, teacher_id, is_important, created_at) 
-                    VALUES (?, ?, ?, ?, ?, NOW())
+                    INSERT INTO announcements (title, content, author_id, is_active, created_at) 
+                    VALUES (?, ?, ?, ?, NOW())
                 ");
                 
-                if ($stmt->execute([$title, $content, $course_id, $_SESSION['user_id'], $is_important])) {
+                if ($stmt->execute([$title, $content, $_SESSION['user_id'], 1])) {
                     redirect_with_message('announcements.php', 'تم إنشاء الإعلان بنجاح!', 'success');
                 } else {
                     $errors[] = 'حدث خطأ أثناء إنشاء الإعلان';
@@ -46,8 +46,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
     } elseif ($_POST['action'] === 'delete' && isset($_POST['announcement_id'])) {
         $announcement_id = $_POST['announcement_id'];
         try {
-            $stmt = $pdo->prepare("DELETE FROM announcements WHERE id = ? AND teacher_id = ?");
-            if ($stmt->execute([$announcement_id, $_SESSION['user_id']])) {
+                    $stmt = $pdo->prepare("DELETE FROM announcements WHERE id = ? AND author_id = ?");
+        if ($stmt->execute([$announcement_id, $_SESSION['user_id']])) {
                 redirect_with_message('announcements.php', 'تم حذف الإعلان بنجاح!', 'success');
             }
         } catch (Exception $e) {
@@ -67,10 +67,10 @@ try {
 
 try {
     $stmt = $pdo->prepare("
-        SELECT a.*, c.title as course_title 
+        SELECT a.*, u.full_name as author_name
         FROM announcements a 
-        LEFT JOIN courses c ON a.course_id = c.id 
-        WHERE a.teacher_id = ? 
+        LEFT JOIN users u ON a.author_id = u.id 
+        WHERE a.author_id = ? 
         ORDER BY a.created_at DESC
     ");
     $stmt->execute([$_SESSION['user_id']]);
